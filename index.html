@@ -7,6 +7,7 @@
     <title>Fazer</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="logo-area" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
@@ -17,12 +18,29 @@
         </div>
     </header>
     <main>
-
+        <dialog id="new-task-dialog" class="new-task-dialog">
+            <div class="name-section">
+                <label for="new-task-name">Name:</label>
+                <input type="text" class="new-task-name" id="new-task-name">
+            </div>
+            <div class="priority-section">
+                <label for="new-task-priority">Priority:</label>
+                <select name="" id="new-task-priority">
+                    <option value="" disabled selected>...</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+            <button type="submit" command="close" commandFor="new-task-dialog" id="new-task-add-btn">Add task</button>
+        </dialog>
         <div class="search-area">
             <input type="search" name="search-box" id="search-box" class="search-box">
-            <button class="add-task-btn">Add Task</button>
+            <button class="add-task-btn" commandFor="new-task-dialog" command="show-modal">Add Task</button>
         </div>
     </main>
 </body>
 <script src="script.js"></script>
+
 </html>

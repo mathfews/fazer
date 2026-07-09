@@ -2,3 +2,11 @@ body {
     margin-top: 20px;
     margin-left: 20px;
 }
+
+.new-task-dialog[open] {
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+    padding: 50px; 
+    border: 2px solid coral;
+}
