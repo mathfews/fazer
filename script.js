@@ -16,7 +16,7 @@ function render_tasks() {
         else {
             status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})" checked>`
         }
-        task_element.innerHTML = `<div class="task-area">
+        task_element.innerHTML = `<div class="task-area" oncontextmenu="deleteTask(${task.id})">
             <div>
                 ${status}
                 <label for="${task.id}">${task.title}</label> 
@@ -33,6 +33,16 @@ function render_tasks() {
 function changeTaskState(id) {
     const selected_task = tasks.find(task => task.id === id)
     selected_task.completed = !selected_task.completed
+    render_tasks()
+}
+
+function deleteTask(id) {
+    event.preventDefault()
+    const selected_task = tasks.find(task => task.id === id)
+    const task_index = tasks.indexOf(selected_task)
+    const task_name = selected_task.title
+    tasks.splice(task_index,1)
+    console.log(`${task_name} succesfully deleted!`)
     render_tasks()
 }
 
