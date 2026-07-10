@@ -2,28 +2,38 @@ const new_task_add_btn = document.getElementById("new-task-add-btn")
 const new_task_priority = document.getElementById("new-task-priority")
 const new_task_name = document.getElementById("new-task-name")
 const tasks_area = document.getElementById("tasks-area")
+const tasks = []
 let id = 0
-let tasks = []
 
-function render_tasks(tasks) {
+function render_tasks() {
     tasks_area.innerHTML = ""
     tasks.forEach((task) => {
-        const task_div = document.createElement("div")
-        const task_ul = document.createElement("ul")
-        const task_options = document.createElement("ul")
-        const task_title = document.createElement("li")
-        const task_ID = document.createElement("li")
-        const task_priority = document.createElement("li")
-        task_title.textContent = task.title
-        task_priority.textContent = task.priority
-        task_ID.textContent = task.id
-        task_ul.appendChild(task_title)
-        task_options.appendChild(task_priority)
-        task_options.appendChild(task_ID)
-        task_ul.appendChild(task_options)
-        task_div.appendChild(task_ul)
-        tasks_area.appendChild(task_div)
+        const task_element = document.createElement("div")
+        let status = ""
+        if (!task.completed) {
+            status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})">`
+        }
+        else {
+            status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})" checked>`
+        }
+        task_element.innerHTML = `<div class="task-area">
+            <div>
+                ${status}
+                <label for="${task.id}">${task.title}</label> 
+            </div>
+            <p>-</p>
+            <p>${task.priority}</p>
+            <p>${task.id}</p>
+            <p>${task.completed}</p>
+        </div>`
+        tasks_area.appendChild(task_element)
     })
+}
+
+function changeTaskState(id) {
+    const selected_task = tasks.find(task => task.id === id)
+    selected_task.completed = !selected_task.completed
+    render_tasks()
 }
 
 new_task_add_btn.addEventListener("click", () => {
@@ -31,9 +41,10 @@ new_task_add_btn.addEventListener("click", () => {
         id: ++id,
         title: new_task_name.value,
         priority: new_task_priority.value,
+        completed: false,
     }
     new_task_name.value = ""
     new_task_priority.value = ""
     tasks.push(task_info)
-    render_tasks(tasks)
+    render_tasks()
 })
