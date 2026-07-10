@@ -2,8 +2,13 @@ const new_task_add_btn = document.getElementById("new-task-add-btn")
 const new_task_priority = document.getElementById("new-task-priority")
 const new_task_name = document.getElementById("new-task-name")
 const tasks_area = document.getElementById("tasks-area")
+const task_update_menu = document.getElementById("task-update-menu")
+const update_task_btn = document.getElementById("update-task-btn")
+const update_task_name = document.getElementById("update-task-name")
+const update_task_priority = document.getElementById("update-task-priority")
 const tasks = []
 let id = 0
+let editingTask = null
 
 function render_tasks() {
     tasks_area.innerHTML = ""
@@ -16,7 +21,7 @@ function render_tasks() {
         else {
             status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})" checked>`
         }
-        task_element.innerHTML = `<div class="task-area" oncontextmenu="deleteTask(${task.id})">
+        task_element.innerHTML = `<div class="task-area" oncontextmenu="deleteTask(${task.id}) onauxclick="updateTask(${task.id})"">
             <div>
                 ${status}
                 <label for="${task.id}">${task.title}</label> 
@@ -25,20 +30,47 @@ function render_tasks() {
             <p>${task.priority}</p>
             <p>${task.id}</p>
             <p>${task.completed}</p>
+            <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal" onclick="updateTask(${task.id})">Update Task</button>
         </div>`
+        task_element.addEventListener('auxclick', (event) => {
+            if (event.button === 1) {
+                updateTask(task.id)
+            }
+        })
         tasks_area.appendChild(task_element)
     })
 }
 
+function selectTask(id) {
+    return tasks.find(task => task.id === id)
+}
+
 function changeTaskState(id) {
-    const selected_task = tasks.find(task => task.id === id)
+    const selected_task = selectTask(id)
     selected_task.completed = !selected_task.completed
     render_tasks()
 }
 
+function updateTask(id) {
+    editingTask = selectTask(id)
+    update_task_name.value = ""
+    update_task_priority.value = ""
+    update_task_name.value = editingTask.title
+    update_task_priority.value = editingTask.priority
+}
+
+update_task_btn.addEventListener("click", () => {
+    if (!editingTask) return
+
+    editingTask.title = update_task_name.value
+    editingTask.priority = update_task_priority.value
+
+    render_tasks()
+})
+
 function deleteTask(id) {
     event.preventDefault()
-    const selected_task = tasks.find(task => task.id === id)
+    const selected_task = selectTask(id)
     const task_index = tasks.indexOf(selected_task)
     const task_name = selected_task.title
     tasks.splice(task_index,1)

@@ -3,7 +3,7 @@ body {
     margin-left: 20px;
 }
 
-.new-task-dialog[open] {
+dialog[open] {
     display: flex; 
     flex-direction: column; 
     gap: 20px; 

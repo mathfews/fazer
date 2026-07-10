@@ -35,6 +35,24 @@
             </div>
             <button type="submit" command="close" commandFor="new-task-dialog" id="new-task-add-btn">Add task</button>
         </dialog>
+        <dialog id="task-update-dialog" class="task-update-dialog">
+            <h3>Update the task</h3>
+            <div class="name-section">
+                <label for="update-task-name">Name:</label>
+                <input type="text" class="update-task-name" id="update-task-name">
+            </div>
+            <div class="priority-section">
+                <label for="update-task-priority">Priority:</label>
+                <select name="" id="update-task-priority">
+                    <option value="" disabled selected>...</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                    <option value="None">None</option>
+                </select>
+            </div>
+            <button type="submit" command="close" commandFor="task-update-dialog" id="update-task-btn">Update task</button>
+        </dialog>
         <div class="search-area">
             <input type="search" name="search-box" id="search-box" class="search-box">
             <button class="add-task-btn" commandFor="new-task-dialog" command="show-modal">Add Task</button>
