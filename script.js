@@ -8,36 +8,40 @@ const update_task_name = document.getElementById("update-task-name")
 const update_task_priority = document.getElementById("update-task-priority")
 let editingTask = null
 
+function createTaskElement(task) {
+    const task_element = document.createElement("div")
+    let status = ""
+    if (!task.completed) {
+        status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})">`
+    }
+    else {
+        status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})" checked>`
+    }
+    task_element.innerHTML = `<div class="task-area" oncontextmenu="deleteTask(${task.id})" onauxclick="updateTask(${task.id})">
+        <div>
+            ${status}
+            <label for="${task.id}">${task.title}</label> 
+        </div>
+        <p>-</p>
+        <p>${task.priority}</p>
+        <p>${task.id}</p>
+        <p>${task.completed}</p>
+        <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal" onclick="updateTask(${task.id})">Update Task</button>
+    </div>`
+    task_element.addEventListener('auxclick', (event) => {
+        if (event.button === 1) {
+            updateTask(task.id)
+        }
+    })
+    return task_element
+}
+
 function render_tasks() {
     const tasks = JSON.parse(localStorage.getItem("tasks"))
     if (tasks) {
         tasks_area.innerHTML = ""
-        tasks.forEach((task) => {
-            const task_element = document.createElement("div")
-            let status = ""
-            if (!task.completed) {
-                status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})">`
-            }
-            else {
-                status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})" checked>`
-            }
-            task_element.innerHTML = `<div class="task-area" oncontextmenu="deleteTask(${task.id})" onauxclick="updateTask(${task.id})">
-                <div>
-                    ${status}
-                    <label for="${task.id}">${task.title}</label> 
-                </div>
-                <p>-</p>
-                <p>${task.priority}</p>
-                <p>${task.id}</p>
-                <p>${task.completed}</p>
-                <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal" onclick="updateTask(${task.id})">Update Task</button>
-            </div>`
-            task_element.addEventListener('auxclick', (event) => {
-                if (event.button === 1) {
-                    updateTask(task.id)
-                }
-            })
-            tasks_area.appendChild(task_element) 
+        tasks.forEach((task) => { 
+            tasks_area.appendChild(createTaskElement(task))
         })
     }
 }
