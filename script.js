@@ -52,12 +52,12 @@ function createTaskElement(task) {
     const task_element = document.createElement("div")
     let status = ""
     if (!task.completed) {
-        status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})">`
+        status = `<input type="checkbox" name="check" class="checkbox" id="${task.id}">`
     }
     else {
-        status = `<input type="checkbox" name="check" id="${task.id}" onclick="changeTaskState(${task.id})" checked>`
+        status = `<input type="checkbox" name="check" class="checkbox" id="${task.id}" checked>`
     }
-    task_element.innerHTML = `<div class="task-area" oncontextmenu="deleteTask(${task.id})" onauxclick="updateTask(${task.id})">
+    task_element.innerHTML = `<div class="task-area">
         <div>
             ${status}
             <label for="${task.id}">${task.title}</label> 
@@ -66,12 +66,16 @@ function createTaskElement(task) {
         <p>${task.priority}</p>
         <p>${task.id}</p>
         <p>${task.completed}</p>
-        <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal" onclick="updateTask(${task.id})">Update Task</button>
+        <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal">Update Task</button>
     </div>`
-    task_element.addEventListener('auxclick', (event) => {
-        if (event.button === 1) {
-            updateTask(task.id)
-        }
+    const task_checkbox = task_element.querySelector(".checkbox")
+    const task_area = task_element.querySelector(".task-area")
+    const task_update_btn = task_element.querySelector(".update-task-btn")
+    task_update_btn.addEventListener("click", () => updateTask(task.id))
+    task_checkbox.addEventListener("click", () => changeTaskState(task.id))
+    task_area.addEventListener("contextmenu", (event) => {
+        event.preventDefault()
+        deleteTask(task.id)
     })
     return task_element
 }
