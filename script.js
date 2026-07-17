@@ -37,22 +37,20 @@ function createTaskElement(task) {
     return task_element
 }
 
-function render_tasks(tasks=JSON.parse(localStorage.getItem("tasks"))) {
-    if (tasks) {
-        tasks_area.innerHTML = ""
-        tasks.forEach((task) => { 
-            tasks_area.appendChild(createTaskElement(task))
-        })
-    }
+function render_tasks(tasks=getTasks()) {
+    tasks_area.innerHTML = ""
+    tasks.forEach((task) => { 
+        tasks_area.appendChild(createTaskElement(task))
+    })
 }
 
-function selectTask(id, array=JSON.parse(localStorage.getItem("tasks"))) {
+function selectTask(id, array=getTasks()) {
     return array.find(task => task.id === id)
 }
 
 function changeTaskState(id) {
-    const current_tasks = JSON.parse(localStorage.getItem("tasks"))
-    selected_task = selectTask(id, current_tasks)
+    const current_tasks = getTasks()
+    const selected_task = selectTask(id, current_tasks)
     selected_task.completed = !selected_task.completed
     localStorage.setItem("tasks", JSON.stringify(current_tasks))
     render_tasks()
@@ -69,8 +67,8 @@ function updateTask(id) {
 update_task_btn.addEventListener("click", () => {
     if (!editingTask) return
 
-    current_tasks = JSON.parse(localStorage.getItem("tasks"))
-    selected_task = selectTask(editingTask.id, current_tasks)
+    const current_tasks = getTasks()
+    const selected_task = selectTask(editingTask.id, current_tasks)
     selected_task.title = update_task_name.value
     selected_task.priority = update_task_priority.value
 
@@ -79,20 +77,28 @@ update_task_btn.addEventListener("click", () => {
     render_tasks()
 })
 
+function getTasks() {
+    let current_tasks = JSON.parse(localStorage.getItem("tasks"))
+    if (current_tasks === null) {
+        current_tasks = []
+    }
+    return current_tasks
+}
+
 search_box.addEventListener("input", () => {
     const input = (search_box.value).toLowerCase()
     if (input === "") {
         render_tasks()
     }
     else {
-        let current_tasks = JSON.parse(localStorage.getItem("tasks"))
+        let current_tasks = getTasks()
         let filtered_tasks = current_tasks.filter(task => task.title.toLowerCase().includes(input))
         render_tasks(filtered_tasks)
     }
 })
 
 function deleteTask(id) {
-    const current_tasks = JSON.parse(localStorage.getItem("tasks"))
+    const current_tasks = getTasks()
     event.preventDefault()
     const selected_task = selectTask(id, current_tasks)
     const task_index = current_tasks.indexOf(selected_task)
@@ -104,7 +110,7 @@ function deleteTask(id) {
 }
 
 new_task_add_btn.addEventListener("click", () => {
-    let current_tasks = JSON.parse(localStorage.getItem("tasks"))
+    let current_tasks = getTasks()
     if (current_tasks === null) {
         current_tasks = []
     }
