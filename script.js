@@ -52,7 +52,7 @@ function changeTaskState(id) {
     const current_tasks = getTasks()
     const selected_task = selectTask(id, current_tasks)
     selected_task.completed = !selected_task.completed
-    localStorage.setItem("tasks", JSON.stringify(current_tasks))
+    saveTasks(current_tasks)
     render_tasks()
 }
 
@@ -72,7 +72,7 @@ update_task_btn.addEventListener("click", () => {
     selected_task.title = update_task_name.value
     selected_task.priority = update_task_priority.value
 
-    localStorage.setItem("tasks", JSON.stringify(current_tasks))
+    saveTasks(current_tasks)
 
     render_tasks()
 })
@@ -104,16 +104,17 @@ function deleteTask(id) {
     const task_index = current_tasks.indexOf(selected_task)
     const task_name = selected_task.title
     current_tasks.splice(task_index,1)
-    localStorage.setItem("tasks", JSON.stringify(current_tasks))
+    saveTasks(current_tasks)
     console.log(`${task_name} succesfully deleted!`)
     render_tasks()
 }
 
+function saveTasks(tasks) {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+}
+
 new_task_add_btn.addEventListener("click", () => {
     let current_tasks = getTasks()
-    if (current_tasks === null) {
-        current_tasks = []
-    }
     if (localStorage.getItem("id") === null) {
         localStorage.setItem("id", 0)
     }
@@ -127,7 +128,7 @@ new_task_add_btn.addEventListener("click", () => {
     new_task_name.value = ""
     new_task_priority.value = ""
     current_tasks.push(task_info)
-    localStorage.setItem("tasks", JSON.stringify(current_tasks))
+    saveTasks(current_tasks)
     render_tasks()
 })
 
