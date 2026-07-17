@@ -16,9 +16,11 @@ status_filter.addEventListener("change", applyFilters)
 priority_filter.addEventListener("change", applyFilters)
 
 function applyFilters() {
-    const filtered_tasks_status = filterByStatus(status_filter.value)
+    const current_tasks = getTasks()
+    const filtered_tasks_input = current_tasks.filter(task => task.title.toLowerCase().includes(search_box.value.toLowerCase()))
+    const filtered_tasks_status = filterByStatus(status_filter.value, filtered_tasks_input)
     const filtered_tasks_priority = filterByPriority(priority_filter.value, filtered_tasks_status)
-    render_tasks(filtered_tasks_priority)
+    render_tasks(filtered_tasks_priority) 
 }
 
 function filterByPriority(selected_option,tasks=getTasks()) {
@@ -122,17 +124,7 @@ function getTasks() {
     return current_tasks
 }
 
-search_box.addEventListener("input", () => {
-    const input = (search_box.value).toLowerCase()
-    if (input === "") {
-        render_tasks()
-    }
-    else {
-        let current_tasks = getTasks()
-        let filtered_tasks = current_tasks.filter(task => task.title.toLowerCase().includes(input))
-        render_tasks(filtered_tasks)
-    }
-})
+search_box.addEventListener("input", applyFilters)
 
 function deleteTask(id) {
     const current_tasks = getTasks()
@@ -165,7 +157,7 @@ new_task_add_btn.addEventListener("click", () => {
     new_task_priority.value = ""
     current_tasks.push(task_info)
     saveTasks(current_tasks)
-    render_tasks()
+    applyFilters()
 })
 
 render_tasks()
