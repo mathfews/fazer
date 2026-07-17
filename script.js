@@ -6,6 +6,7 @@ const task_update_menu = document.getElementById("task-update-menu")
 const update_task_btn = document.getElementById("update-task-btn")
 const update_task_name = document.getElementById("update-task-name")
 const update_task_priority = document.getElementById("update-task-priority")
+const search_box = document.getElementById("search-box")
 let editingTask = null
 
 function createTaskElement(task) {
@@ -36,8 +37,7 @@ function createTaskElement(task) {
     return task_element
 }
 
-function render_tasks() {
-    const tasks = JSON.parse(localStorage.getItem("tasks"))
+function render_tasks(tasks=JSON.parse(localStorage.getItem("tasks"))) {
     if (tasks) {
         tasks_area.innerHTML = ""
         tasks.forEach((task) => { 
@@ -77,6 +77,18 @@ update_task_btn.addEventListener("click", () => {
     localStorage.setItem("tasks", JSON.stringify(current_tasks))
 
     render_tasks()
+})
+
+search_box.addEventListener("input", () => {
+    const input = (search_box.value).toLowerCase()
+    if (input === "") {
+        render_tasks()
+    }
+    else {
+        let current_tasks = JSON.parse(localStorage.getItem("tasks"))
+        let filtered_tasks = current_tasks.filter(task => task.title.toLowerCase().includes(input))
+        render_tasks(filtered_tasks)
+    }
 })
 
 function deleteTask(id) {
