@@ -8,12 +8,29 @@ const update_task_name = document.getElementById("update-task-name")
 const update_task_priority = document.getElementById("update-task-priority")
 const search_box = document.getElementById("search-box")
 const status_filter = document.getElementById("status-filter")
+const priority_filter = document.getElementById("priority-filter")
 let editingTask = null
 
 status_filter.addEventListener("change", () => {
-    selected_option = status_filter.value
+    const selected_option = status_filter.value
     filterByStatus(selected_option)
 })
+
+priority_filter.addEventListener("change", () => {
+    const selected_option = priority_filter.value
+    filterByPriority(selected_option)
+})
+
+function filterByPriority(selected_option,tasks=getTasks()) {
+    let priority = null
+    if (selected_option == "all") {
+        render_tasks(tasks)
+    }
+    else {
+        const filtered_tasks = tasks.filter(task => task.priority.toLowerCase() == selected_option)
+        render_tasks(filtered_tasks)
+    }
+}
 
 function filterByStatus(selected_option, tasks=getTasks()) {
     let status = null
