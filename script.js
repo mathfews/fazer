@@ -6,7 +6,6 @@ const task_update_menu = document.getElementById("task-update-menu")
 const update_task_btn = document.getElementById("update-task-btn")
 const update_task_name = document.getElementById("update-task-name")
 const update_task_priority = document.getElementById("update-task-priority")
-const tasks_ARRAY = []
 let editingTask = null
 
 function render_tasks() {
