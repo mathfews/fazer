@@ -21,3 +21,9 @@ dialog[open] {
     align-items: center; 
     gap: 10px;
 }
+
+.search-area {
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px;
+}

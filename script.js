@@ -7,7 +7,30 @@ const update_task_btn = document.getElementById("update-task-btn")
 const update_task_name = document.getElementById("update-task-name")
 const update_task_priority = document.getElementById("update-task-priority")
 const search_box = document.getElementById("search-box")
+const status_filter = document.getElementById("status-filter")
 let editingTask = null
+
+status_filter.addEventListener("change", () => {
+    selected_option = status_filter.value
+    filterByStatus(selected_option)
+})
+
+function filterByStatus(selected_option, tasks=getTasks()) {
+    let status = null
+    if (selected_option == "all") {
+        render_tasks(tasks)
+    }
+    else {
+        if (selected_option == "completed") {
+            status = true
+        }
+        else {
+            status = false
+        }
+        const filtered_tasks = tasks.filter(task => task.completed === status)
+        render_tasks(filtered_tasks)
+    }
+}
 
 function createTaskElement(task) {
     const task_element = document.createElement("div")
@@ -39,7 +62,7 @@ function createTaskElement(task) {
 
 function render_tasks(tasks=getTasks()) {
     tasks_area.innerHTML = ""
-    tasks.forEach((task) => { 
+    tasks.forEach((task) => {
         tasks_area.appendChild(createTaskElement(task))
     })
 }
@@ -49,11 +72,12 @@ function selectTask(id, array=getTasks()) {
 }
 
 function changeTaskState(id) {
+    const selected_option = status_filter.value
     const current_tasks = getTasks()
     const selected_task = selectTask(id, current_tasks)
     selected_task.completed = !selected_task.completed
     saveTasks(current_tasks)
-    render_tasks()
+    filterByStatus(selected_option, current_tasks)
 }
 
 function updateTask(id) {

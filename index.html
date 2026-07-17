@@ -54,9 +54,17 @@
             <button type="submit" command="close" commandFor="task-update-dialog" id="update-task-btn">Update task</button>
         </dialog>
         <div class="search-area">
-            <input type="search" name="search-box" id="search-box" class="search-box">
-            <button class="add-task-btn" commandFor="new-task-dialog" command="show-modal">Add Task</button>
-        </div>
+            <div>
+                <input type="search" name="search-box" id="search-box" class="search-box">
+                <button class="add-task-btn" commandFor="new-task-dialog" command="show-modal">Add Task</button> 
+            </div>
+            <div>
+                <select name="status-filter" id="status-filter">
+                    <option value="all" selected>All</option>
+                    <option value="completed">Completed</option>
+                    <option value="unchecked">Unchecked</option>
+                </select>
+            </div>
         <div class="tasks-area" id="tasks-area"></div>
     </main>
 </body>
