@@ -11,33 +11,29 @@ const status_filter = document.getElementById("status-filter")
 const priority_filter = document.getElementById("priority-filter")
 let editingTask = null
 
-status_filter.addEventListener("change", () => {
-    const selected_option = status_filter.value
-    filterByStatus(selected_option)
-})
+status_filter.addEventListener("change", applyFilters)
 
-priority_filter.addEventListener("change", () => {
-    const selected_option = priority_filter.value
-    filterByPriority(selected_option)
-})
+priority_filter.addEventListener("change", applyFilters)
+
+function applyFilters() {
+    const filtered_tasks_status = filterByStatus(status_filter.value)
+    const filtered_tasks_priority = filterByPriority(priority_filter.value, filtered_tasks_status)
+    render_tasks(filtered_tasks_priority)
+}
 
 function filterByPriority(selected_option,tasks=getTasks()) {
-    let priority = null
-    if (selected_option == "all") {
-        render_tasks(tasks)
-    }
-    else {
+    let current_tasks = tasks
+    if (selected_option != "all") {
         const filtered_tasks = tasks.filter(task => task.priority.toLowerCase() == selected_option)
-        render_tasks(filtered_tasks)
+        current_tasks = filtered_tasks
     }
+    return current_tasks
 }
 
 function filterByStatus(selected_option, tasks=getTasks()) {
+    let current_tasks = tasks
     let status = null
-    if (selected_option == "all") {
-        render_tasks(tasks)
-    }
-    else {
+    if (selected_option != "all") {
         if (selected_option == "completed") {
             status = true
         }
@@ -45,8 +41,9 @@ function filterByStatus(selected_option, tasks=getTasks()) {
             status = false
         }
         const filtered_tasks = tasks.filter(task => task.completed === status)
-        render_tasks(filtered_tasks)
+        current_tasks = filtered_tasks
     }
+    return current_tasks
 }
 
 function createTaskElement(task) {
@@ -89,12 +86,11 @@ function selectTask(id, array=getTasks()) {
 }
 
 function changeTaskState(id) {
-    const selected_option = status_filter.value
     const current_tasks = getTasks()
     const selected_task = selectTask(id, current_tasks)
     selected_task.completed = !selected_task.completed
     saveTasks(current_tasks)
-    filterByStatus(selected_option, current_tasks)
+    applyFilters()
 }
 
 function updateTask(id) {
@@ -115,7 +111,7 @@ update_task_btn.addEventListener("click", () => {
 
     saveTasks(current_tasks)
 
-    render_tasks()
+    applyFilters()
 })
 
 function getTasks() {
@@ -146,8 +142,7 @@ function deleteTask(id) {
     const task_name = selected_task.title
     current_tasks.splice(task_index,1)
     saveTasks(current_tasks)
-    console.log(`${task_name} succesfully deleted!`)
-    render_tasks()
+    applyFilters()
 }
 
 function saveTasks(tasks) {
