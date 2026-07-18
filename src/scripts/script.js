@@ -120,14 +120,6 @@ update_task_btn.addEventListener("click", () => {
     applyFilters()
 })
 
-function getTasks() {
-    let current_tasks = JSON.parse(localStorage.getItem("tasks"))
-    if (current_tasks === null) {
-        current_tasks = []
-    }
-    return current_tasks
-}
-
 search_box.addEventListener("input", applyFilters)
 
 function deleteTask(id) {
@@ -139,10 +131,6 @@ function deleteTask(id) {
     current_tasks.splice(task_index,1)
     saveTasks(current_tasks)
     applyFilters()
-}
-
-function saveTasks(tasks) {
-    localStorage.setItem("tasks", JSON.stringify(tasks))
 }
 
 new_task_add_btn.addEventListener("click", () => {
