@@ -49,6 +49,7 @@ export function deleteTask(id) {
     const task_index = current_tasks.indexOf(selected_task)
     current_tasks.splice(task_index,1)
     saveTasks(current_tasks)
+    return current_tasks
 }
 
 export function selectTask(id, array=getTasks()) {

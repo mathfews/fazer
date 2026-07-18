@@ -1,8 +1,7 @@
-
 export const new_task_add_btn = document.getElementById("new-task-add-btn")
 export const new_task_name = document.getElementById("new-task-name")
 export const new_task_priority = document.getElementById("new-task-priority")
-
+export const add_task_btn = document.getElementById("add-task-btn")
 
 export const tasks_area = document.getElementById("tasks-area")
 
