@@ -1,0 +1,42 @@
+import { getTasks } from "./storage.js"
+import { deleteTask,changeTaskState,updateTask } from "./crud.js"
+const tasks_area = document.getElementById("tasks-area")
+
+export function createTaskElement(task) {
+    const task_element = document.createElement("div")
+    let status = ""
+    if (!task.completed) {
+        status = `<input type="checkbox" name="check" class="checkbox" id="${task.id}">`
+    }
+    else {
+        status = `<input type="checkbox" name="check" class="checkbox" id="${task.id}" checked>`
+    }
+    task_element.innerHTML = `<div class="task-area">
+        <div>
+            ${status}
+            <label for="${task.id}">${task.title}</label> 
+        </div>
+        <p>-</p>
+        <p>${task.priority}</p>
+        <p>${task.id}</p>
+        <p>${task.completed}</p>
+        <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal">Update Task</button>
+    </div>`
+    const task_checkbox = task_element.querySelector(".checkbox")
+    const task_area = task_element.querySelector(".task-area")
+    const task_update_btn = task_element.querySelector(".update-task-btn")
+    task_update_btn.addEventListener("click", () => updateTask(task.id))
+    task_checkbox.addEventListener("click", () => changeTaskState(task.id))
+    task_area.addEventListener("contextmenu", (event) => {
+        event.preventDefault()
+        deleteTask(task.id)
+    })
+    return task_element
+}
+
+export function render_tasks(tasks=getTasks()) {
+    tasks_area.innerHTML = ""
+    tasks.forEach((task) => {
+        tasks_area.appendChild(createTaskElement(task))
+    })
+}
