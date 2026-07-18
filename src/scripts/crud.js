@@ -1,6 +1,6 @@
 import { getTasks, saveTasks } from "./storage.js"
 import { applyFilters } from "./filters.js"
-import { new_task_name, new_task_priority, update_task_name, update_task_priority } from "./dom.js"
+import { new_task_name, new_task_priority, update_task_name, update_task_priority, update_task_btn } from "./dom.js"
 
 let editingTask = null
 
@@ -33,10 +33,24 @@ export function changeTaskState(id) {
 
 export function updateTask(id) {
     editingTask = selectTask(id)
+    
     update_task_name.value = ""
     update_task_priority.value = ""
     update_task_name.value = editingTask.title
     update_task_priority.value = editingTask.priority
+}
+
+export function saveUpdateTask() {
+    if (!editingTask) return
+
+    const current_tasks = getTasks()
+    const selected_task = selectTask(editingTask.id, current_tasks)
+    selected_task.title = update_task_name.value
+    selected_task.priority = update_task_priority.value
+
+    saveTasks(current_tasks)
+
+    applyFilters()
 }
 
 export function deleteTask(id) {
