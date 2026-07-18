@@ -1,6 +1,6 @@
 import { getTasks } from "./storage.js"
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
-const tasks_area = document.getElementById("tasks-area")
+import { tasks_area } from "./dom.js"
 
 export function createTaskElement(task) {
     const task_element = document.createElement("div")
