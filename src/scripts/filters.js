@@ -1,29 +1,24 @@
-import { getTasks } from "./storage.js"
-import { render_tasks } from "./tasks.js"
-import { status_filter, priority_filter, search_box } from "./dom.js"
+export function applyFilters(tasks, search, status, priority) {
+    const filtered_tasks_search = tasks.filter(task => task.title.toLowerCase().includes(search.toLowerCase()))
+    const filtered_tasks_status = filterByStatus(status, filtered_tasks_search)
+    const filtered_tasks_priority = filterByPriority(priority, filtered_tasks_status)
 
-export function applyFilters() {
-    const current_tasks = getTasks()
-    const filtered_tasks_input = current_tasks.filter(task => task.title.toLowerCase().includes(search_box.value.toLowerCase()))
-    const filtered_tasks_status = filterByStatus(status_filter.value, filtered_tasks_input)
-    const filtered_tasks_priority = filterByPriority(priority_filter.value, filtered_tasks_status)
-    render_tasks(filtered_tasks_priority) 
+    return filtered_tasks_priority
 }
 
-export function filterByPriority(selected_option,tasks=getTasks()) {
-    let current_tasks = tasks
-    if (selected_option != "all") {
-        const filtered_tasks = tasks.filter(task => task.priority.toLowerCase() == selected_option)
-        current_tasks = filtered_tasks
+export function filterByPriority(priority,tasks) {
+    if (priority != "all") {
+        const filtered_tasks = tasks.filter(task => task.priority.toLowerCase() == priority)
+        return filtered_tasks
     }
-    return current_tasks
+    return tasks
 }
 
-export function filterByStatus(selected_option, tasks=getTasks()) {
+export function filterByStatus(state, tasks) {
     let current_tasks = tasks
     let status = null
-    if (selected_option != "all") {
-        if (selected_option == "completed") {
+    if (state != "all") {
+        if (state == "completed") {
             status = true
         }
         else {
