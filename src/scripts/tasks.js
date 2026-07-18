@@ -1,6 +1,4 @@
-import { getTasks } from "./storage.js"
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
-import { tasks_area } from "./dom.js"
 
 export function createTaskElement(task) {
     const task_element = document.createElement("div")
@@ -34,9 +32,9 @@ export function createTaskElement(task) {
     return task_element
 }
 
-export function render_tasks(tasks=getTasks()) {
-    tasks_area.innerHTML = ""
+export function render_tasks(tasks_position, tasks) {
+    tasks_position.innerHTML = ""
     tasks.forEach((task) => {
-        tasks_area.appendChild(createTaskElement(task))
+        tasks_position.appendChild(createTaskElement(task))
     })
 }
