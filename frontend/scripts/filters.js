@@ -6,7 +6,7 @@ export function applyFilters(tasks, search, status, priority) {
     return filtered_tasks_priority
 }
 
-export function filterByPriority(priority,tasks) {
+export function filterByPriority(priority, tasks) {
     if (priority != "all") {
         const filtered_tasks = tasks.filter(task => task.priority.toLowerCase() == priority)
         return filtered_tasks

@@ -4,8 +4,8 @@ import { renderTasks } from "./tasks.js"
 import { status_filter, priority_filter, update_task_btn, search_box, new_task_add_btn, new_task_name, new_task_priority, tasks_area, add_task_btn, update_task_name, update_task_priority } from "./dom.js"
 import { getTasks } from "./storage.js"
 
-function updateScreen() {
-    const filtered_tasks = applyFilters(getTasks(), search_box.value, status_filter.value, priority_filter.value)
+async function updateScreen() {
+    const filtered_tasks = applyFilters(await getTasks(), search_box.value, status_filter.value, priority_filter.value)
     renderTasks(tasks_area, filtered_tasks, update_task_name, update_task_priority)
 }
 

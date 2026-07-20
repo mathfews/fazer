@@ -3,20 +3,8 @@ import { getTasks, saveTasks } from "./storage.js"
 let editingTask = null
 
 export function addTask(title, priority) {
-    let current_tasks = getTasks()
-    if (localStorage.getItem("id") === null) {
-        localStorage.setItem("id", 0)
-    }
-    const task_info = {
-        id: Number(localStorage.getItem("id")) + 1,
-        title: title,
-        priority: priority,
-        completed: false,
-    }
-    localStorage.setItem("id", task_info.id)
+    saveTasks(title, priority)
 
-    current_tasks.push(task_info)
-    saveTasks(current_tasks)
 }
 
 export function changeTaskState(id) {
