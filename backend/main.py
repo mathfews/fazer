@@ -14,6 +14,11 @@ app = FastAPI()
 
 db = []
 
+def find_task(id):
+    for task in db:
+        if task.id == id:
+            return task
+
 @app.post("/tasks/")
 async def add_task(task: Task):
     task.id = next(id_generator)
@@ -21,15 +26,11 @@ async def add_task(task: Task):
 
 @app.get("/tasks/{id}")
 async def get_task(id: int):
-    for task in db:
-        if task.id == id:
-            return task
+    return find_task(id)
 
 @app.delete("/tasks/{id}")
 async def delete_task(id: int):
-    for task in db:
-        if task.id == id:
-            db.remove(task)
+    db.remove(find_task(id))
 
 @app.get("/tasks/")
 async def get_all_tasks():
