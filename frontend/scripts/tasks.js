@@ -1,4 +1,5 @@
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
+import { getTasks } from "./storage.js"
 
 export function createTaskElement(task) {
     const task_element = document.createElement("div")
@@ -38,10 +39,11 @@ export function renderTasks(tasks_position, tasks, update_task_name, update_task
 
         task_checkbox.addEventListener("click", () => changeTaskState(task.id))
 
-        task_area.addEventListener("contextmenu", (event) => {
+        task_area.addEventListener("contextmenu", async (event) => {
             event.preventDefault()
-            const current_tasks = deleteTask(task.id)
-            renderTasks(task_position, current_tasks, update_task_name, update_task_priority)
+            deleteTask(task.id)
+            const tasks = await getTasks()
+            renderTasks(tasks_position, tasks, update_task_name, update_task_priority)
         })
 
         tasks_position.appendChild(element)
