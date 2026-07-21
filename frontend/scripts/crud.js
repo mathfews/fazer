@@ -4,14 +4,26 @@ let editingTask = null
 
 export function addTask(title, priority) {
     saveTasks(title, priority)
-
 }
 
-export function changeTaskState(id) {
-    const current_tasks = getTasks()
-    const selected_task = selectTask(id, current_tasks)
-    selected_task.completed = !selected_task.completed
-    saveTasks(current_tasks)
+export async function changeTaskState(id) {
+    const url = `http://127.0.0.1:8000/tasks/${id}`
+    try {
+        const response = await fetch(url, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: id
+        })
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`)
+        }
+
+    } catch (error) {
+        console.log("Error", error)
+    }
 }
 
 export function updateTask(id) {
@@ -54,6 +66,6 @@ export async function deleteTask(id) {
     }
 }
 
-export function selectTask(id, array=getTasks()) {
+export async function selectTask(id) {
     return array.find(task => task.id === id)
 }

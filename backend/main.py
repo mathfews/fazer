@@ -32,6 +32,12 @@ async def get_task(id: int):
 async def delete_task(id: int):
     db.remove(find_task(id))
 
+@app.patch("/tasks/{id}")
+async def change_task_state(id: int):
+    task = find_task(id)
+    task.completed = not task.completed
+    return task
+
 @app.get("/tasks/")
 async def get_all_tasks():
     return db

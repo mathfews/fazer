@@ -37,7 +37,11 @@ export function renderTasks(tasks_position, tasks, update_task_name, update_task
             updateTask(task.id)
         })
 
-        task_checkbox.addEventListener("click", () => changeTaskState(task.id))
+        task_checkbox.addEventListener("click", async () => {
+            changeTaskState(task.id)
+            const tasks = await getTasks()
+            renderTasks(tasks_position, tasks, update_task_name, update_task_priority)
+        })
 
         task_area.addEventListener("contextmenu", async (event) => {
             event.preventDefault()
