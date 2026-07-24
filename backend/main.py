@@ -10,6 +10,11 @@ class Task(BaseModel):
     priority: str
     completed: bool | None = False
 
+class TaskUpdate(BaseModel):
+    title: str | None = None
+    priority: str | None = None
+    completed: bool | None = None
+
 app = FastAPI()
 
 db = []
@@ -33,9 +38,16 @@ async def delete_task(id: int):
     db.remove(find_task(id))
 
 @app.patch("/tasks/{id}")
-async def change_task_state(id: int):
+async def update_task(id: int, data: TaskUpdate):
     task = find_task(id)
-    task.completed = not task.completed
+
+    if data.title is not None:
+        task.title = data.title
+    if data.priority is not None:
+        task.priority = data.priority
+    if data.completed is not None:
+        task.completed = not task.completed
+
     return task
 
 @app.get("/tasks/")
