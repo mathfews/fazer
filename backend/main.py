@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from itertools import count
+from database import get_tasks
+
 
 id_generator = count(start=0)
 
@@ -16,8 +18,6 @@ class TaskUpdate(BaseModel):
     completed: bool | None = None
 
 app = FastAPI()
-
-db = []
 
 def find_task(id):
     for task in db:
@@ -58,4 +58,4 @@ async def update_task(id: int, data: TaskUpdate):
 
 @app.get("/tasks/")
 async def get_all_tasks():
-    return db
+    return get_tasks()
