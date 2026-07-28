@@ -8,6 +8,7 @@ export function addTask(title, priority) {
 
 export async function changeTaskState(id) {
     const url = `http://127.0.0.1:8000/tasks/${id}`
+    const data = JSON.stringify({"completed": true})
     try {
         const response = await fetch(url, {
             method: "PATCH",
