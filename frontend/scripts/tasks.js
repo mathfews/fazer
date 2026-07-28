@@ -1,5 +1,8 @@
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
 import { getTasks } from "./storage.js"
+import { new_task_priority, new_task_name } from "./dom.js"
+
+export let editingTaskId = null
 
 export function createTaskElement(task) {
     const task_element = document.createElement("div")
@@ -19,7 +22,7 @@ export function createTaskElement(task) {
         <p>${task.priority}</p>
         <p>${task.id}</p>
         <p>${task.completed}</p>
-        <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal">Update Task</button>
+        <button class="update-task-btn" commandFor="task-update-dialog" command="show-modal" data-task-id="${task.id}">Update Task</button>
     </div>`
     return task_element
 }
@@ -31,10 +34,15 @@ export function renderTasks(tasks_position, tasks, update_task_name, update_task
 
         const task_checkbox = element.querySelector(".checkbox")
         const task_area = element.querySelector(".task-area")
-        const task_update_btn = element.querySelector(".update-task-btn")
+        const task_update_btn = document.getElementById("update-task-btn")
+        const open_modal = element.querySelector(".update-task-btn")
+        
+        open_modal.addEventListener("click", () => {
+            update_task_name.value = task.title
+            update_task_priority.value = task.priority
 
-        task_update_btn.addEventListener("click", () => {
-            updateTask(task.id)
+            editingTaskId = task.id
+
         })
 
         task_checkbox.addEventListener("click", async () => {

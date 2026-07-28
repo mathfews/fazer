@@ -29,16 +29,16 @@ export async function changeTaskState(id) {
 export async function updateTask(id, new_title, new_priority) {
     const url = `http://127.0.0.1:8000/tasks/${id}`
     try {
-        const response = fetch(url, {
+        const response = await fetch(url, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: id, new_title, new_priority
+            body: JSON.stringify({"id": id, "title": new_title, "priority": new_priority})
         })
 
         if (!response.ok) {
-            throw new Error(`HTTP ERROR! Status: ${response.status}`)
+            throw new Error(`HTTP ERROR! Status: ${await response.status}`)
         }
     } catch (error) {
         console.log("Error", error)

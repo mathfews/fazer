@@ -5,8 +5,7 @@ export const add_task_btn = document.getElementById("add-task-btn")
 
 export const tasks_area = document.getElementById("tasks-area")
 
-
-export const update_task_btn = document.getElementById("update-task-btn")
+export const confirm_update_task_btn = document.getElementById("update-task-btn")
 export const update_task_name = document.getElementById("update-task-name")
 export const update_task_priority = document.getElementById("update-task-priority")
 
