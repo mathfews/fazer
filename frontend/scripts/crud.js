@@ -8,13 +8,14 @@ export function addTask(title, priority) {
 
 export async function changeTaskState(id) {
     const url = `http://127.0.0.1:8000/tasks/${id}`
+    const data = JSON.stringify({"completed": true})
     try {
         const response = await fetch(url, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json"
             },
-            body: id
+            body: JSON.stringify({id: id, completed: true})
         })
 
         if (!response.ok) {
@@ -26,21 +27,23 @@ export async function changeTaskState(id) {
     }
 }
 
-export function updateTask(id) {
-    editingTask = selectTask(id)
+export async function updateTask(id, new_title, new_priority) {
+    const url = `http://127.0.0.1:8000/tasks/${id}`
+    try {
+        const response = fetch(url, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: id, new_title, new_priority
+        })
 
-    return editingTask
-}
-
-export function saveUpdateTask(title, priority) {
-    if (!editingTask) return
-
-    const current_tasks = getTasks()
-    const selected_task = selectTask(editingTask.id, current_tasks)
-    selected_task.title = title
-    selected_task.priority = priority
-
-    saveTasks(current_tasks)
+        if (!response.ok) {
+            throw new Error(`HTTP ERROR! Status: ${response.status}`)
+        }
+    } catch (error) {
+        console.log("Error", error)
+    }
 }
 
 export async function deleteTask(id) {
