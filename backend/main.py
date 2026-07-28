@@ -1,19 +1,6 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-from itertools import count
-from database import get_tasks, find_task
-
-class Task(BaseModel):
-    id: int | None = 0
-    title: str
-    priority: str
-    completed: bool | None = False
-
-class TaskUpdate(BaseModel):
-    title: str | None = None
-    priority: str | None = None
-    completed: bool | None = None
 from database import get_tasks, find_task, add_task
+from schemas import Task, TaskUpdate
 
 app = FastAPI()
 

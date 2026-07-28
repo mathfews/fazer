@@ -1,4 +1,5 @@
 from pathlib import Path
+from schemas import Task
 import sqlite3
 
 DB_PATH = Path(__file__).parent / "database.db"
