@@ -29,3 +29,7 @@ def add_task(data : Task):
     cursor.execute("INSERT INTO tasks (title, priority, completed) VALUES (?,?,?)", (data.title, data.priority, False))
     connect.commit()
     return data
+
+def remove_task(id):
+    cursor.execute("DELETE FROM tasks WHERE id = ?", (id,))
+    connect.commit()
