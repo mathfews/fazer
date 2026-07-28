@@ -19,3 +19,7 @@ connect.commit()
 def get_tasks():
     cursor.execute("SELECT * FROM tasks")
     return cursor.fetchall()
+
+def find_task(id):
+    cursor.execute("SELECT * FROM tasks WHERE id = ?", (id,))
+    return cursor.fetchone()
