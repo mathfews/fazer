@@ -20,6 +20,11 @@ def get_tasks():
     cursor.execute("SELECT * FROM tasks")
     return cursor.fetchall()
 
-def find_task(id):
+def find_task(id : int):
     cursor.execute("SELECT * FROM tasks WHERE id = ?", (id,))
     return cursor.fetchone()
+
+def add_task(data : Task):
+    cursor.execute("INSERT INTO tasks (title, priority, completed) VALUES (?,?,?)", (data.title, data.priority, False))
+    connect.commit()
+    return data

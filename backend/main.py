@@ -13,13 +13,13 @@ class TaskUpdate(BaseModel):
     title: str | None = None
     priority: str | None = None
     completed: bool | None = None
+from database import get_tasks, find_task, add_task
 
 app = FastAPI()
 
 @app.post("/tasks/")
-async def add_task(task: Task):
-    task.id = next(id_generator)
-    db.append(task)
+async def create_task(task: Task):
+    add_task(task)
 
 @app.get("/tasks/{id}")
 async def get_task(id: int):
