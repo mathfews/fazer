@@ -1,33 +1,43 @@
 # Fazer
 
-A simple Todo List application built with vanilla JavaScript to practice front-end architecture and, in future versions, backend development with FastAPI.
+A full-stack Todo List application built to practice modern web development. The project started as a vanilla JavaScript application using LocalStorage and is now being migrated to a FastAPI backend, following a gradual feature-by-feature migration approach.
 
 ## Features
 
 * [x] Create tasks
-* [x] Update tasks
-* [x] Delete tasks
+* [x] Read tasks
+* [x] Update task title and priority
 * [x] Mark tasks as completed
+* [x] Delete tasks
 * [x] Filter tasks by status
 * [x] Filter tasks by priority
 * [x] Search tasks
-* [x] Persist data using LocalStorage
+* [x] REST API with FastAPI
+* [x] Full CRUD integration between frontend and backend
+* [ ] Persist data using SQLite
 
 ## Tech Stack
+
+### Frontend
 
 * HTML
 * CSS
 * JavaScript (ES Modules)
-* LocalStorage
+
+### Backend
+
+* Python
+* FastAPI
+* Pydantic
 
 ## Project Status
 
-This project is currently focused on functionality and architecture. A complete UI redesign and a FastAPI backend integration are planned for future versions.
+The application now uses a FastAPI backend with complete CRUD operations. Data is currently stored in memory while the backend architecture is being developed. The next major milestone is replacing the in-memory storage with SQLite for persistent data.
 
 ## Future Improvements
 
-* Integrate a FastAPI backend
-* Replace LocalStorage with SQLite
+* Persist data with SQLite
 * Redesign the user interface
 * Add responsive design
 * Improve the overall user experience
+* Add API documentation and validation improvements
