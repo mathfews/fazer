@@ -1,6 +1,6 @@
 # Fazer
 
-A full-stack Todo List application built to practice modern web development. The project started as a vanilla JavaScript application using LocalStorage and is now being migrated to a FastAPI backend, following a gradual feature-by-feature migration approach.
+A full-stack Todo List application built to practice modern web development. The project started as a vanilla JavaScript application using LocalStorage and evolved into a FastAPI-based backend application with SQLite persistence.
 
 ## Features
 
@@ -14,7 +14,7 @@ A full-stack Todo List application built to practice modern web development. The
 * [x] Search tasks
 * [x] REST API with FastAPI
 * [x] Full CRUD integration between frontend and backend
-* [ ] Persist data using SQLite
+* [x] Persist data using SQLite
 
 ## Tech Stack
 
@@ -29,15 +29,18 @@ A full-stack Todo List application built to practice modern web development. The
 * Python
 * FastAPI
 * Pydantic
+* SQLite
 
 ## Project Status
 
-The application now uses a FastAPI backend with complete CRUD operations. Data is currently stored in memory while the backend architecture is being developed. The next major milestone is replacing the in-memory storage with SQLite for persistent data.
+The application currently has a full-stack architecture with a FastAPI backend handling CRUD operations and SQLite being used for data persistence.
+
+The project was developed through gradual migrations, starting with LocalStorage on the frontend, moving to an in-memory FastAPI backend, and finally integrating SQLite as the database layer.
 
 ## Future Improvements
 
-* Persist data with SQLite
 * Redesign the user interface
 * Add responsive design
 * Improve the overall user experience
 * Add API documentation and validation improvements
+* Implement authentication and user accounts
