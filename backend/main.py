@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from database import get_tasks, find_task, add_task, remove_task, update_task
-from schemas import Task, TaskUpdate
+from schemas import Task
 
 app = FastAPI()
 
