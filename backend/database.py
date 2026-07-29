@@ -1,5 +1,5 @@
 from pathlib import Path
-from schemas import Task
+from schemas import Task, TaskUpdate
 import sqlite3
 
 DB_PATH = Path(__file__).parent / "database.db"
@@ -30,6 +30,20 @@ def add_task(data : Task):
     connect.commit()
     return data
 
-def remove_task(id):
+def remove_task(id : int):
     cursor.execute("DELETE FROM tasks WHERE id = ?", (id,))
     connect.commit()
+
+def update_task(id : int, data : TaskUpdate):
+    task = find_task(id)
+
+    if data.title is not None:
+        cursor.execute("UPDATE tasks SET title = ? WHERE id = ?", (data.title, id))
+    if data.priority is not None:
+        cursor.execute("UPDATE tasks SET priority = ? WHERE id = ?", (data.priority, id))
+    if data.completed is not None:
+        cursor.execute("UPDATE tasks SET completed = ? WHERE id = ?", (not task[3], id))
+
+    connect.commit()
+
+    return find_task(id)

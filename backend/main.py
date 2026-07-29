@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from database import get_tasks, find_task, add_task, remove_task
+from database import get_tasks, find_task, add_task, remove_task, update_task
 from schemas import Task, TaskUpdate
 
 app = FastAPI()
@@ -17,22 +17,8 @@ async def delete_task(id: int):
     remove_task(id)
 
 @app.patch("/tasks/{id}")
-async def update_task(id: int, data: TaskUpdate):
-    task = find_task(id)
-
-    print(task)
-    print(id, data)
-
-    if data.title is not None:
-        task.title = data.title
-    if data.priority is not None:
-        task.priority = data.priority
-    if data.completed is not None:
-        task.completed = not task.completed
-
-    print(id, data)
-
-    return task
+async def update_task_route(id: int, data: TaskUpdate):
+    return update_task(id, data)
 
 @app.get("/tasks/")
 async def get_all_tasks():
