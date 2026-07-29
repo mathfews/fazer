@@ -1,6 +1,9 @@
 :root {
     --primary-color: #FA9F20;
     --bg-color: beige;
+    --search-bg-color: #e3e3e391;
+    --secondary-text-color: #424242;
+    --primary-text-color: black;
 }
 
 body {
@@ -11,16 +14,33 @@ body {
 }
 
 #sidebar-section {
+    background-color: var(--bg-color);
     height: 100dvh;
     margin-left: 20px;
     width: 25%;
     display: flex;
     align-items: start;
     flex-direction: column;
+
     #logo-area {
         display: flex;
-        gap: 10px;
         align-items: center;
+        gap: 10px;
+        
+        h1 {
+            font-weight: 600;
+        }
+    }
+
+    p {
+        font-size: 0.88em;
+        color: var(--secondary-text-color);
+    }
+
+    #search-area {
+        position: relative;
+        width: fit-content;
+        margin-bottom: 20px;
     }
 
     #search-box {
@@ -28,20 +48,26 @@ body {
         height: 30px;
         border: none;
         outline: none;
-        background-color: var(--bg-color);
-        padding-left: 10px;
+        background-color: var(--search-bg-color);
+        padding-left: 35px;
         border-radius: 5px;
+        margin-bottom: 0;
     }
 
-    ul {
+    #search-area svg {
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        transform: translateY(-50%) scale(0.7);
+        pointer-events: none;
+    }
+
+    #top-pages-section {
         display: flex;
         flex-direction: column;
         padding: 0;
         gap: 10px;
-    }
-
-    li {
-        list-style-type: none;
+        margin-bottom: 5px;
     }
 
     .block {
@@ -53,10 +79,28 @@ body {
     h1 {
         font-size: 1.6em
     }
+
+    .top-page {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        p {
+            color: var(--primary-text-color);
+            margin: 0;
+            font-weight: 500;
+            font-size: 0.8em;
+        }
+        svg {
+            scale: 95%;
+            color: var(--primary-color);
+        }
+    }
+
 }
 
 #main-section {
     height: 100dvh;
     width: 100%;
-    background-color: blue;
+    background-color: var(--bg-color);
 }
