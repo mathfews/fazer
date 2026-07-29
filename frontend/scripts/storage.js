@@ -27,6 +27,7 @@ export async function saveTasks(title, priority) {
             body: JSON.stringify({
                 "title": title, 
                 "priority": priority,
+                "completed": false
             })
         })
 
@@ -37,7 +38,6 @@ export async function saveTasks(title, priority) {
         const data = await response.json()
 
         console.log(await data)
-
         
     } catch(error) {
         console.log("Error:", error)

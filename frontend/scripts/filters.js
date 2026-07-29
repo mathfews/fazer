@@ -1,5 +1,6 @@
 export function applyFilters(tasks, search, status, priority) {
-    const filtered_tasks_search = tasks.filter(task => task.title.toLowerCase().includes(search.toLowerCase()))
+    const filtered_tasks_search = tasks.filter(task => task["title"].toLowerCase().includes(search.toLowerCase()))
+    console.log(filtered_tasks_search)
     const filtered_tasks_status = filterByStatus(status, filtered_tasks_search)
     const filtered_tasks_priority = filterByPriority(priority, filtered_tasks_status)
 
@@ -8,7 +9,7 @@ export function applyFilters(tasks, search, status, priority) {
 
 export function filterByPriority(priority, tasks) {
     if (priority != "all") {
-        const filtered_tasks = tasks.filter(task => task.priority.toLowerCase() == priority)
+        const filtered_tasks = tasks.filter(task => task["priority"].toLowerCase() == priority)
         return filtered_tasks
     }
     return tasks
@@ -19,12 +20,12 @@ export function filterByStatus(state, tasks) {
     let status = null
     if (state != "all") {
         if (state == "completed") {
-            status = true
+            status = 1
         }
         else {
-            status = false
+            status = 0
         }
-        const filtered_tasks = tasks.filter(task => task.completed === status)
+        const filtered_tasks = tasks.filter(task => task["completed"] === status)
         current_tasks = filtered_tasks
     }
     return current_tasks
