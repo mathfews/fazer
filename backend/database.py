@@ -5,6 +5,7 @@ import sqlite3
 DB_PATH = Path(__file__).parent / "database.db"
 
 connect = sqlite3.connect(DB_PATH)
+connect.row_factory = sqlite3.Row
 
 cursor = connect.cursor()
 
@@ -42,7 +43,7 @@ def update_task(id : int, data : TaskUpdate):
     if data.priority is not None:
         cursor.execute("UPDATE tasks SET priority = ? WHERE id = ?", (data.priority, id))
     if data.completed is not None:
-        cursor.execute("UPDATE tasks SET completed = ? WHERE id = ?", (not task[3], id))
+        cursor.execute("UPDATE tasks SET completed = ? WHERE id = ?", (not task["completed"], id))
 
     connect.commit()
 
