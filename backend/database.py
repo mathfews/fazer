@@ -46,5 +46,3 @@ def update_task(id : int, data : Task):
         cursor.execute("UPDATE tasks SET completed = ? WHERE id = ?", (not task["completed"], id))
 
     connect.commit()
-
-    return find_task(id)

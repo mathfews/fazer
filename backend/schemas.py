@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 class Task(BaseModel):
-    title: str
-    priority: str
-    completed: bool | None = False
+    title: str | None = None
+    priority: str | None = None
+    completed: bool | None = None

@@ -1,9 +1,7 @@
 export function applyFilters(tasks, search, status, priority) {
     const filtered_tasks_search = tasks.filter(task => task["title"].toLowerCase().includes(search.toLowerCase()))
-    console.log(filtered_tasks_search)
     const filtered_tasks_status = filterByStatus(status, filtered_tasks_search)
     const filtered_tasks_priority = filterByPriority(priority, filtered_tasks_status)
-
     return filtered_tasks_priority
 }
 

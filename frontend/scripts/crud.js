@@ -14,7 +14,7 @@ export async function changeTaskState(id) {
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify({id: id, completed: true})
+            body: JSON.stringify({"id": id, "completed": 1})
         })
 
         if (!response.ok) {
