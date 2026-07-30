@@ -1,11 +1,12 @@
 :root {
     --primary-color: #FA9F20;
-    --button-bg-color: #f8e4c770;
+    --button-border-color: #FA9F20;
     --bg-color: beige;
     --search-bg-color: #e3e3e391;
     --secondary-text-color: #424242;
     --primary-text-color: black;
     --priority-filter-color: #C2B199;
+    --button-text-color: #696969;
 }
 
 body {
@@ -150,6 +151,35 @@ body {
         }
         p {
             font-size: 1.5em;
+        }
+    }
+
+    #new-task-area {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--button-text-color);
+        border: 1px dashed var(--button-border-color);
+        border-radius: 6px;
+        padding-left: 10px;
+        width: 60%;
+        height: 35px;
+        font-size: 0.9em;
+        svg {
+            color: var(--button-border-color);
+        }
+        p {
+            transition: 0.3s ease-in-out color, 0.3s ease-in-out font-weight;
+        }
+    }
+
+    #new-task-area:hover {
+        p {
+            color: var(--primary-color);
+            font-weight: 500;
         }
     }
 }
