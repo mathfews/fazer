@@ -1,5 +1,6 @@
 :root {
     --primary-color: #FA9F20;
+    --button-bg-color: #f8e4c770;
     --bg-color: beige;
     --search-bg-color: #e3e3e391;
     --secondary-text-color: #424242;
@@ -75,7 +76,7 @@ body {
 
     #filter-pages-section {
         display: flex;
-        gap: 20px;
+        gap: 35px;
     }
 
     #priority-filter-section, #status-filter-section {
@@ -126,4 +127,29 @@ body {
     height: 100dvh;
     width: 100%;
     background-color: var(--bg-color);
+
+    #header-area {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 50px;
+    }
+
+    #title-area {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+        font-weight: 600;
+        color: var(--primary-color);
+        svg {
+            transform: scale(1.2);
+        }
+        svg path {
+            stroke-width: 2px;
+        }
+        p {
+            font-size: 1.5em;
+        }
+    }
 }
