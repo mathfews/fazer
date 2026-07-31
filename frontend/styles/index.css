@@ -7,6 +7,7 @@
     --primary-text-color: black;
     --priority-filter-color: #C2B199;
     --button-text-color: #696969;
+    --button-bg-color: #fa9f20dd;
 }
 
 body {
@@ -207,6 +208,31 @@ body {
                     pointer-events: none;
                 }
             }
+        }
+
+        button {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 20px;
+            padding: 0 10px;
+            border-radius: 6px;
+            height: 25px;
+            border: none;
+            background-color: transparent;
+            border: 1px solid var(--search-bg-color);
+            color: var(--secondary-text-color);
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: 0.3s ease-in-out color, 0.3s ease-in-out border-color, 0.3s ease-in-out background-color;
+        }
+
+        button:hover {
+            background-color: var(--button-bg-color);
+            border-color: var(--button-bg-color);
+            color: white;
+            transform: scale(1.02);
         }
 
         #task-btn-details.open {
