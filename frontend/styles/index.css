@@ -263,6 +263,10 @@ body {
     #tasks-area {
         height: 100%;
         width: 70%;
+        div {
+            display: flex;
+            align-items: center;
+        }
     }
 
     .task-template {
@@ -270,18 +274,60 @@ body {
         flex-direction: row;
         gap: 10px;
         align-items: center;
+        font-size: 0.95em;
+
+        div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .metadata-area {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            top: 1px;
+        }
+
+        .metadata {
+            cursor: pointer;
+            padding: 2px 8px;
+            border: 1px solid rgb(222, 222, 201);
+            font-weight: 500;
+            font-size: .90em;
+            border-radius: 4px;
+        }
+
+        .priority-high {
+            background: #fde2df;
+            border-color: #f6bcb5;
+            color: #b42318;
+        }
+
+        .priority-medium {
+            background: #e6f7ea;
+            border-color: #a8e6bd;
+            color: #137333;
+        }
+
+        .priority-low {
+            background: #e3f2fd;
+            border-color: #b8e0ee;
+            color: #1565c0;
+        }
+
         .task-status {
             cursor: pointer;
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
             background-color: transparent;
             border: 1px solid var(--primary-color);
-            border-radius: 6px;
+            border-radius: 3px;
             position: relative;
             display: flex;
             transform: scale(1);
-            bottom: 1px;
             transition: 0.3s ease-in-out background-color, 0.3s ease-in-out opacity;
         }
         .task-status::after {
@@ -292,10 +338,8 @@ body {
             align-items: center;
             justify-content: center;
             content: "✓";
-            font-size: 1.3em;
             font-weight: bolder;
             color: #472c05;
-            transform: scale(0.5);
             transition: 0.3s ease-in-out opacity, 0.3s ease-in-out transform;
         }
 

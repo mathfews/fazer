@@ -48,10 +48,16 @@ const task2 = {
     "priority": "Medium"
 }
 
-const tasks = [createTaskElement(task1), createTaskElement(task2)]
+const task3 = {
+    "title": "study dev ops",
+    "priority": "Low"
+}
+
+const tasks = [createTaskElement(task1), createTaskElement(task2), createTaskElement(task3)]
 
 tasks_area.appendChild(tasks[0])
 tasks_area.appendChild(tasks[1])
+tasks_area.appendChild(tasks[2])
 
 
 /* async function updateScreen() {

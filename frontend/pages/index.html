@@ -12,11 +12,14 @@
 
     <template id="task-template">
         <div class="task-template">
-            <input type="checkbox" name="" id="task-status" class="task-status">
-            <p class="task-title"></p>
-            <p class="task-priority"></p>
-            <p>at</p>
-            <p class="task-date"></p>
+            <div>
+                <input type="checkbox" name="" id="task-status" class="task-status">
+                <p class="task-title"></p> 
+            </div>
+            <div class="metadata-area">
+               <p class="task-priority metadata"></p>
+                <p class="task-date metadata"></p> 
+            </div>
         </div>
     </template>
 

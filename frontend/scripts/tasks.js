@@ -7,8 +7,23 @@ export function createTaskElement(task) {
     
     const element = document.getElementById("task-template").content.cloneNode(true)
 
+    const element_priority = element.querySelector(".task-priority")
+
     element.querySelector(".task-title").textContent = task.title
-    element.querySelector(".task-priority").textContent = task.priority
+    element_priority.textContent = task.priority
+
+    if (task.priority == "High") {
+        element_priority.classList.toggle("priority-high")
+    }
+
+    else if (task.priority == "Medium") {
+        element_priority.classList.toggle("priority-medium")
+    }
+
+    else if (task.priority == "Low") {
+        element_priority.classList.toggle("priority-low")
+    }
+
     element.querySelector(".task-date").textContent = "Today"
 
     return element
