@@ -1,10 +1,20 @@
 import { applyFilters } from "./filters.js"
 import { addTask, updateTask } from "./crud.js"
 import { renderTasks, editingTaskId } from "./tasks.js"
-import { status_filter, priority_filter, search_box, new_task_add_btn, new_task_name, new_task_priority, tasks_area, add_task_btn, update_task_name, update_task_priority, confirm_update_task_btn } from "./dom.js"
+import { task_btn_details, task_btn_header, task_btn_area, task_btn_text } from "./dom.js"
 import { getTasks } from "./storage.js"
 
-async function updateScreen() {
+task_btn_header.addEventListener("click", () => {
+    task_btn_details.classList.toggle("open")
+})
+
+document.addEventListener("click", (event) => {
+    if (!task_btn_area.contains(event.target)) {
+        task_btn_details.classList.remove("open")
+    }
+})
+
+/* async function updateScreen() {
     const filtered_tasks = applyFilters(await getTasks(), search_box.value, status_filter.value, priority_filter.value)
     renderTasks(tasks_area, filtered_tasks, update_task_name, update_task_priority)
 }
@@ -30,4 +40,4 @@ new_task_add_btn.addEventListener("click", () => {
     updateScreen()
 })
 
-updateScreen()
+updateScreen() */

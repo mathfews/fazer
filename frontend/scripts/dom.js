@@ -1,15 +1,4 @@
-export const new_task_add_btn = document.getElementById("new-task-add-btn")
-export const new_task_name = document.getElementById("new-task-name")
-export const new_task_priority = document.getElementById("new-task-priority")
-export const add_task_btn = document.getElementById("add-task-btn")
-
-export const tasks_area = document.getElementById("tasks-area")
-
-export const confirm_update_task_btn = document.getElementById("update-task-btn")
-export const update_task_name = document.getElementById("update-task-name")
-export const update_task_priority = document.getElementById("update-task-priority")
-
-
-export const search_box = document.getElementById("search-box")
-export const status_filter = document.getElementById("status-filter")
-export const priority_filter = document.getElementById("priority-filter")
+export const task_btn_header = document.getElementById("task-btn-header")
+export const task_btn_details = document.getElementById("task-btn-details")
+export const task_btn_text = document.getElementById("task-btn-text")
+export const task_btn_area = document.getElementById("task-btn-area")

@@ -138,16 +138,19 @@
                 <p>Today</p>
             </div>
         </div>
-        <div id="new-task-area">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 4.5V19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.5 12H4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-            <p>Add a task...</p>
+        <div id="task-btn-area">
+            <div id="task-btn-header">
+                <svg id="task-btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4.5V19.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19.5 12H4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p id="task-btn-text">Add task...</p>
+            </div>
+            <div id="task-btn-details">
+            </div>
         </div>
         <div id="tasks-area"></div>
     </div>
 </body>
-
+<script type="module" src="../scripts/app.js"></script>
 </html>

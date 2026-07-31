@@ -1,6 +1,5 @@
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
 import { getTasks } from "./storage.js"
-import { new_task_priority, new_task_name } from "./dom.js"
 
 export let editingTaskId = null
 
