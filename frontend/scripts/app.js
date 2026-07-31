@@ -1,7 +1,7 @@
 import { applyFilters } from "./filters.js"
 import { addTask, updateTask } from "./crud.js"
-import { renderTasks, editingTaskId } from "./tasks.js"
-import { task_btn_details, task_btn_header, task_btn_area, task_btn_text } from "./dom.js"
+import { renderTasks, editingTaskId, createTaskElement } from "./tasks.js"
+import { tasks_area, task_btn_details, task_btn_header, task_btn_area, task_btn_text } from "./dom.js"
 import { getTasks } from "./storage.js"
 
 const date_text = document.getElementById("task-btn-text-calendar")
@@ -37,6 +37,22 @@ document.addEventListener("click", (event) => {
         task_btn_details.classList.remove("open")
     }
 })
+
+const task1 = {
+    "title": "study back-end",
+    "priority": "High"
+}
+
+const task2 = {
+    "title": "study front-end",
+    "priority": "Medium"
+}
+
+const tasks = [createTaskElement(task1), createTaskElement(task2)]
+
+tasks_area.appendChild(tasks[0])
+tasks_area.appendChild(tasks[1])
+
 
 /* async function updateScreen() {
     const filtered_tasks = applyFilters(await getTasks(), search_box.value, status_filter.value, priority_filter.value)
