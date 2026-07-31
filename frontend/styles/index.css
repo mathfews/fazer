@@ -156,7 +156,6 @@ body {
 
     #task-btn-area {
         overflow: hidden;
-        cursor: pointer;
         display: flex;
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0.1);
@@ -170,6 +169,7 @@ body {
             color: var(--button-border-color);
         }
         #task-btn-header {
+            cursor: pointer;
             height: 35px;
             display: flex;
             flex-direction: row;
@@ -184,9 +184,32 @@ body {
 
             pointer-events: none;
 
-            align-items: flex-end;
             opacity: 0;
             transition: 0.5s ease-in-out height, 0.5s ease-in-out opacity, 0.5s ease-in-out padding;
+
+
+            #task-btn-calendar-area {
+                border: 1px solid var(--search-bg-color);
+                border-radius: 6px;
+                padding: 0 14px;
+                height: 25px;
+                font-size: 0.9em;
+                display: flex;
+                align-items: center;
+                p {
+                    color: var(--secondary-text-color);
+                    font-weight: 500;
+                }
+                input {
+                    position: absolute;
+                    visibility: none;
+                }
+            }
+
+            #task-btn-calendar {
+                opacity: 0;
+                pointer-events: none;
+            }
         }
 
         #task-btn-details.open {

@@ -4,6 +4,17 @@ import { renderTasks, editingTaskId } from "./tasks.js"
 import { task_btn_details, task_btn_header, task_btn_area, task_btn_text } from "./dom.js"
 import { getTasks } from "./storage.js"
 
+const date_text = document.getElementById("task-btn-text-calendar")
+const date_input = document.getElementById("task-btn-calendar")
+
+date_text.addEventListener("click", () => {
+    date_input.showPicker()
+})
+
+date_input.addEventListener("change", () => {
+    date_text.textContent = "📅 " + date_input.value
+})
+
 task_btn_header.addEventListener("click", () => {
     task_btn_details.classList.toggle("open")
 })
