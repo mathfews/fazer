@@ -7,6 +7,17 @@ import { getTasks } from "./storage.js"
 const date_text = document.getElementById("task-btn-text-calendar")
 const date_input = document.getElementById("task-btn-calendar")
 
+const priority_text = document.getElementById("task-btn-text-priority")
+const priority_input = document.getElementById("task-btn-priority")
+
+priority_text.addEventListener("click", () => {
+    priority_input.showPicker()
+})
+
+priority_input.addEventListener("change", () => {
+    priority_text.textContent = "🚩 " + priority_input.value + " Priority"
+})
+
 date_text.addEventListener("click", () => {
     date_input.showPicker()
 })

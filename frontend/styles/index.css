@@ -188,7 +188,7 @@ body {
             transition: 0.5s ease-in-out height, 0.5s ease-in-out opacity, 0.5s ease-in-out padding;
 
 
-            #task-btn-calendar-area {
+            .propriety {
                 border: 1px solid var(--search-bg-color);
                 border-radius: 6px;
                 padding: 0 14px;
@@ -200,15 +200,12 @@ body {
                     color: var(--secondary-text-color);
                     font-weight: 500;
                 }
-                input {
+                input, select {
                     position: absolute;
                     visibility: none;
+                    opacity: 0;
+                    pointer-events: none;
                 }
-            }
-
-            #task-btn-calendar {
-                opacity: 0;
-                pointer-events: none;
             }
         }
 
@@ -226,6 +223,7 @@ body {
             border: none;
             transition: 0.3s ease-in-out color;
             font-weight: 500;
+            font-size: 1.05em;
             margin: 0;
         }
 
