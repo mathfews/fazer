@@ -16,7 +16,9 @@ date_input.addEventListener("change", () => {
 })
 
 task_btn_header.addEventListener("click", () => {
-    task_btn_details.classList.toggle("open")
+    if (!task_btn_details.classList.contains("open")) {
+       task_btn_details.classList.add("open") 
+    }
 })
 
 document.addEventListener("click", (event) => {

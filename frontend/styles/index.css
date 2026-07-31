@@ -222,15 +222,15 @@ body {
         }
 
         #task-btn-text {
+            background-color: transparent;
+            border: none;
             transition: 0.3s ease-in-out color;
             font-weight: 500;
             margin: 0;
         }
 
-        #task-btn-header:hover {
-            #task-btn-text {
-                color: var(--primary-color);
-            }
+        #task-btn-text:focus {
+            outline: none;
         }
 
         margin-bottom: 20px;
