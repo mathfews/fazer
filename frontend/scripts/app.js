@@ -3,8 +3,21 @@ import { addTask, updateTask } from "./crud.js"
 import { renderTasks, createTaskElement } from "./tasks.js"
 import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
+import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area } from "./dom.js"
 
-setupTaskHandlers()
+setupTaskHandlers() 
+renderTasks(tasks_area, await getTasks())
+
+
+/* task_add_btn.addEventListener("click", () => {
+    const task = {
+        "title": task_btn_text.value,
+        "date": date_input.value,
+        "priority": priority_input.value
+    }
+    const taskElement = createTaskElement(task)
+    tasks_area.appendChild(taskElement)
+})*/
 
 
 
