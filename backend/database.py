@@ -28,7 +28,7 @@ def find_task(id : int):
     return cursor.fetchone()
 
 def add_task(data : Task):
-    cursor.execute("INSERT INTO tasks (title, priority, due_date completed) VALUES (?,?,?,?)", (data.title, data.priority, data.due_date, False))
+    cursor.execute("INSERT INTO tasks (title, priority, due_date, completed) VALUES (?,?,?,?)", (data.title, data.priority, data.due_date, False))
     connect.commit()
     return data
 

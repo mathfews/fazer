@@ -2,8 +2,8 @@ import { getTasks, saveTasks } from "./storage.js"
 
 let editingTask = null
 
-export function addTask(title, priority) {
-    saveTasks(title, priority)
+export function addTask(title, priority, due_date) {
+    saveTasks(title, priority, due_date)
 }
 
 export async function changeTaskState(id) {
