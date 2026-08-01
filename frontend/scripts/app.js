@@ -1,14 +1,8 @@
 import { applyFilters } from "./filters.js"
 import { addTask, updateTask } from "./crud.js"
 import { renderTasks, createTaskElement } from "./tasks.js"
-import { tasks_area, task_btn_details, task_btn_header, task_btn_area, task_btn_text } from "./dom.js"
+import { tasks_area, task_btn_details, task_btn_header, task_btn_area, task_btn_text, date_text, date_input, priority_input, priority_text  } from "./dom.js"
 import { getTasks } from "./storage.js"
-
-const date_text = document.getElementById("task-btn-text-calendar")
-const date_input = document.getElementById("task-btn-calendar")
-
-const priority_text = document.getElementById("task-btn-text-priority")
-const priority_input = document.getElementById("task-btn-priority")
 
 priority_text.addEventListener("click", () => {
     priority_input.showPicker()
