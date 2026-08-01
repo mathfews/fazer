@@ -1,6 +1,6 @@
 import { applyFilters } from "./filters.js"
 import { addTask, updateTask } from "./crud.js"
-import { renderTasks, editingTaskId, createTaskElement } from "./tasks.js"
+import { renderTasks, createTaskElement } from "./tasks.js"
 import { tasks_area, task_btn_details, task_btn_header, task_btn_area, task_btn_text } from "./dom.js"
 import { getTasks } from "./storage.js"
 
@@ -38,22 +38,25 @@ document.addEventListener("click", (event) => {
     }
 })
 
-const task1 = {
+const task1 = createTaskElement({
     "title": "study back-end",
-    "priority": "High"
-}
+    "priority": "High",
+    "date": "03/04/2018"
+})
 
-const task2 = {
+const task2 = createTaskElement({
     "title": "study front-end",
-    "priority": "Medium"
-}
+    "priority": "Medium",
+    "date": "21/08/2021"
+})
 
-const task3 = {
+const task3 = createTaskElement({
     "title": "study dev ops",
-    "priority": "Low"
-}
+    "priority": "Low",
+    "date": "13/02/2022"
+})
 
-const tasks = [createTaskElement(task1), createTaskElement(task2), createTaskElement(task3)]
+const tasks = [task1, task2, task3]
 
 tasks_area.appendChild(tasks[0])
 tasks_area.appendChild(tasks[1])

@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fazer - Today</title>
     <link rel="stylesheet" href="../styles/index.css"">
+    <link rel="icon" href="../assets/fazer_logo.svg">
 </head>
 
 <body>
@@ -14,10 +15,10 @@
         <div class="task-template">
             <div>
                 <input type="checkbox" name="" id="task-status" class="task-status">
-                <p class="task-title"></p> 
+                <input class="task-title" readonly></input> 
             </div>
             <div class="metadata-area">
-               <p class="task-priority metadata"></p>
+                <p class="task-priority metadata"></p>
                 <p class="task-date metadata"></p> 
             </div>
         </div>
@@ -25,7 +26,9 @@
 
     <div id="sidebar-section">
         <div id="logo-area">
-            <div class="block"></div>
+            <div class="block">
+                <img src="../assets/fazer_logo.svg" alt="" class="block">
+            </div>
             <h1>Fazer</h1>
         </div>
         <div id="search-area">

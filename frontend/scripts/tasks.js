@@ -1,15 +1,17 @@
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
 import { getTasks } from "./storage.js"
 
-export let editingTaskId = null
-
 export function createTaskElement(task) {
     
     const element = document.getElementById("task-template").content.cloneNode(true)
 
-    const element_priority = element.querySelector(".task-priority")
+    const taskElement = element.firstElementChild
 
-    element.querySelector(".task-title").textContent = task.title
+    const element_priority = element.querySelector(".task-priority")
+    const element_title = element.querySelector(".task-title")
+
+    element.querySelector(".task-date").textContent = task.date
+    element_title.value = task.title
     element_priority.textContent = task.priority
 
     if (task.priority == "High") {
@@ -24,9 +26,7 @@ export function createTaskElement(task) {
         element_priority.classList.toggle("priority-low")
     }
 
-    element.querySelector(".task-date").textContent = "Today"
-
-    return element
+    return taskElement
 }
 
 export function renderTasks(tasks_position, tasks) {
