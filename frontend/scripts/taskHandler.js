@@ -1,4 +1,4 @@
-import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text  } from "./dom.js"
+import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages  } from "./dom.js"
 
 export function setupTaskHandlers() {
     priority_text.addEventListener("click", () => {
@@ -43,5 +43,15 @@ export function setupTaskHandlers() {
 
         }
 
+    })
+
+    pages.forEach((page) => {
+        page.addEventListener("click", () => {
+            let parent = page.closest("#pages")
+            parent.querySelectorAll(".page").forEach((_page) => {
+                _page.classList.remove("selected")
+            })
+            page.classList.add("selected")
+        })
     })
 }

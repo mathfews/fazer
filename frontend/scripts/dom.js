@@ -10,3 +10,5 @@ export const date_input = document.getElementById("task-btn-calendar")
 
 export const priority_text = document.getElementById("task-btn-text-priority")
 export const priority_input = document.getElementById("task-btn-priority")
+
+export const pages = document.querySelectorAll(".page")

@@ -4,19 +4,6 @@ import { renderTasks, createTaskElement } from "./tasks.js"
 import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
 
-const pages = document.querySelectorAll(".page")
-
-pages.forEach((page) => {
-    page.addEventListener("click", () => {
-        let parent = page.parentElement.parentElement.parentElement
-        parent.querySelectorAll(".page").forEach((_page) => {
-            _page.classList.remove("selected")
-        })
-        page.classList.add("selected")
-    })
-})
-
-
 setupTaskHandlers()
 
 
