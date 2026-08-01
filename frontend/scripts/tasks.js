@@ -14,7 +14,7 @@ export function createTaskElement(task) {
     const element_checkbox = element.querySelector(".task-status")
     const id = Number(taskElement.dataset.id)
 
-    element.querySelector(".task-date").textContent = task.date
+    element.querySelector(".task-date").textContent = task.due_date
     element_title.value = task.title
     element_priority.textContent = task.priority
 
