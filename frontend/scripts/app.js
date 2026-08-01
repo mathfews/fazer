@@ -2,6 +2,9 @@ import { applyFilters } from "./filters.js"
 import { addTask, updateTask } from "./crud.js"
 import { renderTasks, createTaskElement } from "./tasks.js"
 import { getTasks } from "./storage.js"
+import { setupTaskHandlers } from "./taskHandler.js"
+
+setupTaskHandlers()
 
 
 /* async function updateScreen() {

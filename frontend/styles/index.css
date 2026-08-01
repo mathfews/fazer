@@ -27,6 +27,36 @@ body {
     align-items: start;
     flex-direction: column;
 
+    .page {
+        max-width: 173px;
+        width: 173px;
+        padding: 8px;
+        border-radius: 6px;
+        transition: 0.3s ease-in-out background-color, 0.3s ease-in-out border-color, height, 0.1s ease-in-out transform;
+        p {
+            color: var(--primary-text-color);
+        }
+    }
+
+    .page:not(.selected):hover {
+        transform: scale(1.015);
+        display: flex;
+        align-items: center;
+        /* background-color: rgba(205, 205, 205, 0.224); */
+    }
+
+    .selected {
+        background-color: var(--button-border-color);
+        p {
+            color: white;
+        }
+        
+        svg path {
+            color: white;
+        }
+    }
+
+
     #logo-area {
         display: flex;
         align-items: center;
@@ -37,7 +67,7 @@ body {
         }
     }
 
-    p {
+    #search-box {
         font-size: 1em;
         color: var(--secondary-text-color);
     }
@@ -102,7 +132,6 @@ body {
         align-items: center;
         gap: 15px;
         p {
-            color: var(--primary-text-color);
             margin: 0;
             font-size: 1em;
         }
