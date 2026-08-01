@@ -7,19 +7,25 @@ export function createTaskElement(task) {
 
     const taskElement = element.firstElementChild
 
+    taskElement.dataset.id = task.id
+
     const element_priority = element.querySelector(".task-priority")
     const element_title = element.querySelector(".task-title")
     const element_checkbox = element.querySelector(".task-status")
+    const id = Number(taskElement.dataset.id)
 
     element.querySelector(".task-date").textContent = task.date
     element_title.value = task.title
     element_priority.textContent = task.priority
 
-    console.log(task.completed, element_checkbox.checked)
 
     if (task.completed == true) {
         element_checkbox.checked = true
     }
+
+    element_checkbox.addEventListener("change", async () => {
+        await changeTaskState(id)
+    })
 
     if (task.priority == "High") {
         element_priority.classList.toggle("priority-high")

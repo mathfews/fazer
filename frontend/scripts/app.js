@@ -8,7 +8,6 @@ import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area } f
 setupTaskHandlers() 
 renderTasks(tasks_area, await getTasks())
 
-
 /* task_add_btn.addEventListener("click", () => {
     const task = {
         "title": task_btn_text.value,

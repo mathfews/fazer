@@ -10,7 +10,7 @@ export async function getTasks() {
 
         const data = await response.json()
 
-        return data
+        return await data
 
     } catch(error) {
         console.log("Error:", error)
