@@ -1,6 +1,7 @@
 :root {
     --primary-color: #FA9F20;
     --button-border-color: #FA9F20;
+    --selected-page-color: #e0d7c886;
     --bg-color: beige;
     --search-bg-color: #e3e3e391;
     --secondary-text-color: #424242;
@@ -32,9 +33,10 @@ body {
         width: 173px;
         padding: 8px;
         border-radius: 6px;
-        transition: 0.3s ease-in-out background-color, 0.3s ease-in-out border-color, height, 0.1s ease-in-out transform;
-        p {
+        transition: 0.1s ease-in-out transform;
+        p, svg {
             color: var(--primary-text-color);
+            transition: 0.3s ease-in-out color;
         }
     }
 
@@ -46,14 +48,7 @@ body {
     }
 
     .selected {
-        background-color: var(--button-border-color);
-        p {
-            color: white;
-        }
-        
-        svg path {
-            color: white;
-        }
+        background-color: var(--selected-page-color);
     }
 
 
