@@ -1,6 +1,13 @@
-import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages  } from "./dom.js"
+import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages, menu_context  } from "./dom.js"
 
 export function setupTaskHandlers() {
+
+    document.addEventListener("click", (event) => {
+        if (!menu_context.contains(event.target)) {
+            menu_context.classList.remove("open")
+        }
+    })
+
     priority_text.addEventListener("click", () => {
         priority_input.showPicker()
 

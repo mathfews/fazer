@@ -1,5 +1,8 @@
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
+import { menu_context, delete_task_btn, edit_task_btn } from "./dom.js"
 import { getTasks } from "./storage.js"
+
+export let editingTaskId = null
 
 export function createTaskElement(task) {
     
@@ -12,12 +15,12 @@ export function createTaskElement(task) {
     const element_priority = element.querySelector(".task-priority")
     const element_title = element.querySelector(".task-title")
     const element_checkbox = element.querySelector(".task-status")
+
     const id = Number(taskElement.dataset.id)
 
     element.querySelector(".task-date").textContent = task.due_date
     element_title.value = task.title
     element_priority.textContent = task.priority
-
 
     if (task.completed == true) {
         element_checkbox.checked = true
@@ -38,6 +41,14 @@ export function createTaskElement(task) {
     else if (task.priority == "Low") {
         element_priority.classList.toggle("priority-low")
     }
+
+    taskElement.addEventListener("contextmenu", (event) => {
+        event.preventDefault()
+        menu_context.style.top = `${event.clientY}px`
+        menu_context.style.left = `${event.clientX}px`
+        menu_context.classList.add("open")
+        editingTaskId = taskElement.dataset.id
+    })
 
     return taskElement
 }
