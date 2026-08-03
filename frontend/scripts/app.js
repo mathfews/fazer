@@ -1,15 +1,17 @@
 import { applyFilters } from "./filters.js"
-import { addTask, updateTask } from "./crud.js"
+import { addTask, updateTask, deleteTask } from "./crud.js"
 import { renderTasks, createTaskElement, editingTaskId } from "./tasks.js"
 import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
-import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn } from "./dom.js"
+import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context } from "./dom.js"
 
 setupTaskHandlers() 
 renderTasks(tasks_area, await getTasks())
 
-delete_task_btn.addEventListener("click", () => {
-    console.log(`${editingTaskId}`)
+delete_task_btn.addEventListener("click", async () => {
+    await deleteTask(editingTaskId)
+    renderTasks(tasks_area, await getTasks())
+    menu_context.classList.remove("open")
 })
 
 task_add_btn.addEventListener("click", async () => {
