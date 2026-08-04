@@ -319,7 +319,7 @@ body {
 
     #tasks-area {
         height: 100%;
-        width: 70%;
+        width: 65%;
         div {
             display: flex;
             align-items: center;
@@ -332,6 +332,50 @@ body {
         gap: 10px;
         align-items: center;
         font-size: 0.95em;
+
+        .confirm-btn {
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            width: 75px;
+            height: 20px;
+            font-size: 0.85em;
+        }
+
+        .confirm-btn.open {
+            opacity: 1;
+            pointer-events: all;
+            position: relative;
+            align-content: center;
+            justify-content: center;
+            top: 1px;
+            margin-left: auto;
+        }
+
+        button {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 20px;
+            padding: 0 10px;
+            border-radius: 4px;
+            height: 30px;
+            border: none;
+            background-color: transparent;
+            border: 1px solid var(--search-bg-color);
+            color: var(--secondary-text-color);
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: 0.3s ease-in-out color, 0.3s ease-in-out border-color, 0.3s ease-in-out background-color;
+        }
+
+        button:hover {
+            background-color: var(--button-bg-color);
+            border-color: var(--button-bg-color);
+            color: white;
+            transform: scale(1.02);
+        }
 
         div:first-child {
             display: flex;
