@@ -5,18 +5,33 @@ import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
 import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context } from "./dom.js"
 
+let confirm_buttons = null
+
 setupTaskHandlers() 
-renderTasks(tasks_area, await getTasks())
+updateScreen()
+
+async function updateScreen() {
+    renderTasks(tasks_area, await getTasks())
+    confirm_buttons = document.querySelectorAll("button.confirm-btn")
+}
 
 delete_task_btn.addEventListener("click", async () => {
     await deleteTask(editingTaskId)
-    renderTasks(tasks_area, await getTasks())
+    updateScreen()
     menu_context.classList.remove("open")
+})
+
+edit_task_btn.addEventListener("click", async () => {
+    console.log(editingTaskId)
+    console.log(confirm_buttons)
+    confirm_buttons.forEach((confirm_btn) => {
+        confirm_btn.classList.add("open")
+    })
 })
 
 task_add_btn.addEventListener("click", async () => {
     await addTask(task_btn_text.value, priority_input.value, date_input.value)
-    await renderTasks(tasks_area, await getTasks())
+    updateScreen()
 })
 
 /* task_add_btn.addEventListener("click", () => {
