@@ -5,14 +5,16 @@ import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
 import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context } from "./dom.js"
 
-let confirm_buttons = null
+/* let confirm_buttons = null */
+let renderedTasks = null
 
 setupTaskHandlers() 
 updateScreen()
 
 async function updateScreen() {
     renderTasks(tasks_area, await getTasks())
-    confirm_buttons = document.querySelectorAll("button.confirm-btn")
+    /* confirm_buttons = document.querySelectorAll("button.confirm-btn") */
+    renderedTasks = document.querySelectorAll(".task-template")
 }
 
 delete_task_btn.addEventListener("click", async () => {
@@ -23,9 +25,15 @@ delete_task_btn.addEventListener("click", async () => {
 
 edit_task_btn.addEventListener("click", async () => {
     console.log(editingTaskId)
-    console.log(confirm_buttons)
-    confirm_buttons.forEach((confirm_btn) => {
-        confirm_btn.classList.add("open")
+    console.log(renderedTasks)
+    renderedTasks.forEach((task) => {
+        let confirm_btn = task.querySelector(".confirm-btn")
+        task.classList.remove("editing")
+        confirm_btn.classList.remove("open")
+        if (task.dataset.id == editingTaskId) {
+            confirm_btn.classList.add("open")
+            task.classList.add("editing")
+        }
     })
 })
 
