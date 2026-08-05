@@ -52,7 +52,7 @@ edit_task_btn.addEventListener("click", async () => {
     task_date_input.style.display = "flex"
     task_title.readOnly = false
 
-    task_confirm_btn.addEventListener("click", () => {
+    task_confirm_btn.addEventListener("click", async () => {
         renderedTasks.forEach((task) => {
             task.inert = false
         })
@@ -64,6 +64,9 @@ edit_task_btn.addEventListener("click", async () => {
 
         selectedTask.classList.remove("editing")
         task_confirm_btn.classList.remove("open")
+
+        await updateTask(editingTaskId, task_title.value, task_priority.textContent, task_due_date.textContent)
+        await updateScreen()
     })
 
     task_priority.addEventListener("click", () => {
@@ -86,8 +89,8 @@ edit_task_btn.addEventListener("click", async () => {
 })
 
 task_add_btn.addEventListener("click", async () => {
-    await addTask(task_btn_text.value, priority_input.value, date_input.value)
-    updateScreen()
+    addTask(task_btn_text.value, priority_input.value, date_input.value)
+    await updateScreen()
 })
 
 /* task_add_btn.addEventListener("click", () => {

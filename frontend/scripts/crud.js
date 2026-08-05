@@ -26,7 +26,7 @@ export async function changeTaskState(id) {
     }
 }
 
-export async function updateTask(id, new_title, new_priority) {
+export async function updateTask(id, new_title, new_priority, new_due_date) {
     const url = `http://127.0.0.1:8000/tasks/${id}`
     try {
         const response = await fetch(url, {
@@ -34,7 +34,7 @@ export async function updateTask(id, new_title, new_priority) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({"id": id, "title": new_title, "priority": new_priority})
+            body: JSON.stringify({"id": id, "title": new_title, "priority": new_priority, "due_date": new_due_date})
         })
 
         if (!response.ok) {
