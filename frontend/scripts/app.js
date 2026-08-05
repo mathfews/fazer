@@ -1,6 +1,6 @@
 import { applyFilters } from "./filters.js"
 import { addTask, updateTask, deleteTask } from "./crud.js"
-import { renderTasks, createTaskElement, editingTaskId } from "./tasks.js"
+import { renderTasks, createTaskElement, editingTaskId, priorityLabels } from "./tasks.js"
 import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
 import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context } from "./dom.js"
@@ -8,7 +8,7 @@ import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, de
 /* let confirm_buttons = null */
 let renderedTasks = null
 
-setupTaskHandlers() 
+setupTaskHandlers()
 updateScreen()
 
 async function updateScreen() {
@@ -24,16 +24,54 @@ delete_task_btn.addEventListener("click", async () => {
 })
 
 edit_task_btn.addEventListener("click", async () => {
-    console.log(editingTaskId)
-    console.log(renderedTasks)
+    menu_context.classList.remove("open")
+    let selectedTask = null
     renderedTasks.forEach((task) => {
         let confirm_btn = task.querySelector(".confirm-btn")
         task.classList.remove("editing")
+        task.inert = true
         confirm_btn.classList.remove("open")
         if (task.dataset.id == editingTaskId) {
+            task.inert = false
+            selectedTask = task
             confirm_btn.classList.add("open")
             task.classList.add("editing")
         }
+    })
+    const task_title = selectedTask.querySelector(".task-title")
+    const task_priority = selectedTask.querySelector(".task-priority")
+
+    const task_priority_input = selectedTask.querySelector(".task-priority-input")
+    const task_date_input = selectedTask.querySelector(".task-date-input")
+
+    const task_due_date = selectedTask.querySelector(".task-date")
+
+    const task_confirm_btn = selectedTask.querySelector(".confirm-btn")
+
+    task_priority_input.style.display = "flex"
+    task_date_input.style.display = "flex"
+
+    task_confirm_btn.addEventListener("click", () => {
+        renderedTasks.forEach((task) => {
+            task.inert = false
+        })
+
+        task_priority_input.style.display = "none"
+        task_date_input.style.display = "none"
+
+        selectedTask.classList.remove("editing")
+        task_confirm_btn.classList.remove("open")
+    })
+
+    task_priority.addEventListener("click", (event) => {
+        task_priority_input.showPicker()
+    })
+
+    task_priority_input.addEventListener("change", () => {
+      task_priority.textContent = task_priority_input.value
+      task_priority.className = ""
+      task_priority.className = "task-priority metadata"
+      task_priority.classList.add(priorityLabels(task_priority, task_priority_input.value))
     })
 })
 

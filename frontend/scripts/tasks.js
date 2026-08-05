@@ -29,6 +29,11 @@ export function createTaskElement(task) {
     const element_priority = element.querySelector(".task-priority")
     const element_title = element.querySelector(".task-title")
     const element_checkbox = element.querySelector(".task-status")
+    const task_priority_input = element.querySelector(".task-priority-input")
+    const task_date_input = element.querySelector(".task-date-input")
+
+    task_date_input.value = task.due_date
+    task_priority_input.value = task.priority
 
     const id = Number(taskElement.dataset.id)
 
