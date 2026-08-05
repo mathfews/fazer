@@ -66,8 +66,15 @@ edit_task_btn.addEventListener("click", async () => {
         task_confirm_btn.classList.remove("open")
     })
 
-    task_priority.addEventListener("click", (event) => {
+    task_priority.addEventListener("click", () => {
         task_priority_input.showPicker()
+    })
+
+    task_due_date.addEventListener("click", () => {
+        task_date_input.showPicker()
+    })
+    task_date_input.addEventListener("change", () => {
+        task_due_date.textContent = task_date_input.value
     })
 
     task_priority_input.addEventListener("change", () => {
