@@ -339,14 +339,16 @@ body {
         border: 1px solid transparent;
         border-radius: 5px;
         transition: 0.3s ease-in-out background-color, 0.3s ease-in-out border-color;
+
         .confirm-btn {
             display: flex;
             opacity: 0;
             pointer-events: none;
             width: 75px;
-            height: 20px;
-            font-size: 0.85em;
+            font-size: 0.90em;
+            transition: 0.3s ease-out opacity;
         }
+
         .confirm-btn.open {
             opacity: 1;
             pointer-events: all;
@@ -355,6 +357,18 @@ body {
             justify-content: center;
             top: 1px;
             margin-left: auto;
+            background-color: #69696933;
+        }
+
+        .confirm-btn.open:hover {
+            background-color: var(--button-bg-color);
+        }
+
+        .input {
+            position: absolute;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
         }
 
         button {
@@ -365,13 +379,11 @@ body {
             margin-right: 20px;
             padding: 12px 10px;
             border-radius: 4px;
-            height: 30px;
+            height: 25px;
             border: none;
             background-color: transparent;
             border: 1px solid var(--search-bg-color);
             color: var(--secondary-text-color);
-            font-weight: 500;
-            font-size: 1.2em;
             transition: 0.3s ease-in-out color, 0.3s ease-in-out border-color, 0.3s ease-in-out background-color;
         }
 
@@ -379,7 +391,7 @@ body {
             background-color: var(--button-bg-color);
             border-color: var(--button-bg-color);
             color: white;
-            transform: scale(1.02);
+            
         }
 
         div:first-child {
@@ -474,6 +486,6 @@ body {
 
     .task-template.editing {
         border-color: var(--search-bg-color);
-        background-color: rgba(234, 234, 213, 0.747);
+        background-color: rgba(234, 234, 213, 0.486);
     }
 }

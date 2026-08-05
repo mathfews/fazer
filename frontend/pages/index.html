@@ -18,8 +18,18 @@
                 <input class="task-title" readonly></input> 
             </div>
             <div class="metadata-area">
-                <p class="task-priority metadata"></p>
-                <p class="task-date metadata"></p> 
+                <div class="task-priority-area">
+                    <p class="task-priority metadata"></p>
+                    <select name="" class="task-priority-input input">
+                        <option value="High">High priority</option>
+                        <option value="Medium">Medium priority</option>
+                        <option value="Low">Low priority</option>
+                    </select>
+                </div>
+                <div class="task-date-area">
+                    <p class="task-date metadata"></p>
+                    <input type="date" name="" class="task-date-input input">
+                </div>
             </div>
             <button class="confirm-btn">Confirm</button>
         </div>
