@@ -4,8 +4,22 @@ import { getTasks } from "./storage.js"
 
 export let editingTaskId = null
 
+export function priorityLabels(element, priority) {
+    if (priority === "High") {
+        return "priority-high"
+    }
+
+    else if (priority === "Medium") {
+        return "priority-medium"
+    }
+
+    else if (priority === "Low") {
+        return "priority-low"
+    }
+}
+
 export function createTaskElement(task) {
-    
+
     const element = document.getElementById("task-template").content.cloneNode(true)
 
     const taskElement = element.firstElementChild
@@ -30,17 +44,7 @@ export function createTaskElement(task) {
         await changeTaskState(id)
     })
 
-    if (task.priority == "High") {
-        element_priority.classList.toggle("priority-high")
-    }
-
-    else if (task.priority == "Medium") {
-        element_priority.classList.toggle("priority-medium")
-    }
-
-    else if (task.priority == "Low") {
-        element_priority.classList.toggle("priority-low")
-    }
+    element_priority.classList.add(priorityLabels(element_priority, task.priority))
 
     taskElement.addEventListener("contextmenu", (event) => {
         event.preventDefault()
