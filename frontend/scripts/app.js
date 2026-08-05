@@ -50,6 +50,7 @@ edit_task_btn.addEventListener("click", async () => {
 
     task_priority_input.style.display = "flex"
     task_date_input.style.display = "flex"
+    task_title.readOnly = false
 
     task_confirm_btn.addEventListener("click", () => {
         renderedTasks.forEach((task) => {
@@ -58,6 +59,8 @@ edit_task_btn.addEventListener("click", async () => {
 
         task_priority_input.style.display = "none"
         task_date_input.style.display = "none"
+
+        task_title.readOnly = true
 
         selectedTask.classList.remove("editing")
         task_confirm_btn.classList.remove("open")
