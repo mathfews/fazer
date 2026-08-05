@@ -18,3 +18,6 @@ export const priority_text = document.getElementById("task-btn-text-priority")
 export const priority_input = document.getElementById("task-btn-priority")
 
 export const pages = document.querySelectorAll(".page")
+
+export const main_title = document.getElementById("main-title")
+export const main_icon = document.getElementById("main-icon")

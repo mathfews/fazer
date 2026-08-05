@@ -1,4 +1,4 @@
-import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages, menu_context  } from "./dom.js"
+import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages, menu_context, main_title, main_icon  } from "./dom.js"
 
 export function setupTaskHandlers() {
 
@@ -46,6 +46,12 @@ export function setupTaskHandlers() {
                 _page.classList.remove("selected")
             })
             page.classList.add("selected")
+
+            const page_title = page.querySelector(".page-title")
+            const page_icon = page.querySelector(".page-icon")
+
+            main_title.textContent = page_title.textContent
+            main_icon.innerHTML = page_icon.innerHTML
         })
     })
 }
