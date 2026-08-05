@@ -10,7 +10,6 @@ export function setupTaskHandlers() {
 
     priority_text.addEventListener("click", () => {
         priority_input.showPicker()
-
     })
 
     priority_input.addEventListener("change", () => {
