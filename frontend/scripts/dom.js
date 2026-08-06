@@ -4,6 +4,8 @@ export const task_btn_text = document.getElementById("task-btn-text")
 export const task_btn_area = document.getElementById("task-btn-area")
 export const task_add_btn = document.getElementById("task-add-btn")
 
+export const search_box = document.getElementById("search-box")
+
 export const menu_context = document.getElementById("menu-context")
 
 export const tasks_area = document.getElementById("tasks-area")

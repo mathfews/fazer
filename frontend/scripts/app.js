@@ -1,10 +1,23 @@
 import { applyFilters } from "./filters.js"
 import { addTask, updateTask, deleteTask } from "./crud.js"
 import { renderTasks, createTaskElement, editingTaskId, priorityLabels } from "./tasks.js"
-import { getTasks } from "./storage.js"
+import {getTasks, saveTasks} from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
 import {
-    task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context, filter_priority, filter_status, filter_date, pages, task_btn_details
+    task_add_btn,
+    date_input,
+    priority_input,
+    task_btn_text,
+    tasks_area,
+    delete_task_btn,
+    edit_task_btn,
+    menu_context,
+    filter_priority,
+    filter_status,
+    filter_date,
+    pages,
+    task_btn_details,
+    search_box
 } from "./dom.js"
 
 let renderedTasks = null
@@ -13,10 +26,15 @@ setupTaskHandlers()
 updateScreen()
 
 pages.forEach((page) => {
-    page.addEventListener("click", () => {
-        updateScreen()
+    page.addEventListener("click", async () => {
+        await updateScreen()
     })
 })
+
+search_box.addEventListener("input", async () => {
+    await updateScreen()
+})
+
 
 function getFiltersValues() {
     return {
@@ -26,7 +44,7 @@ function getFiltersValues() {
     }
 }
 
-async function updateScreen(date, priority, status) {
+export async function updateScreen() {
     const filters = getFiltersValues()
 
     const date_now = new Date(Date.now()).toISOString().split("T")[0]
@@ -77,9 +95,6 @@ async function updateScreen(date, priority, status) {
         }
     })
 
-    console.log(filters)
-    console.log(filteredByPriority)
-
     filteredByPriority.forEach((task) => {
         if (filters["status"] === "uncompleted") {
             if (task["completed"] === 0) {
@@ -96,7 +111,15 @@ async function updateScreen(date, priority, status) {
         }
     })
 
-    renderTasks(tasks_area, filteredByStatus)
+    const search_text = search_box.value.toLowerCase().trim()
+
+    const filteredByTitle = filteredByStatus.filter(task => {
+        const task_title = task["title"].toLowerCase().trim()
+
+        return task_title.includes(search_text)
+    })
+
+    renderTasks(tasks_area, filteredByTitle)
     renderedTasks = document.querySelectorAll(".task-template")
 }
 
