@@ -1,4 +1,4 @@
-const url = "https://fazer-4l62.onrender.com/"
+const url = "https://fazer-4l62.onrender.com/tasks/"
 
 export async function getTasks() {
     try {

@@ -7,7 +7,7 @@ export function addTask(title, priority, due_date) {
 }
 
 export async function changeTaskState(id) {
-    const url = `https://fazer-4l62.onrender.com/${id}`
+    const url = `https://fazer-4l62.onrender.com/tasks/${id}`
     try {
         const response = await fetch(url, {
             method: "PATCH",
@@ -27,7 +27,7 @@ export async function changeTaskState(id) {
 }
 
 export async function updateTask(id, new_title, new_priority, new_due_date) {
-    const url = `https://fazer-4l62.onrender.com/${id}`
+    const url = `https://fazer-4l62.onrender.com/tasks/${id}`
     try {
         const response = await fetch(url, {
             method: "PATCH",
@@ -46,7 +46,7 @@ export async function updateTask(id, new_title, new_priority, new_due_date) {
 }
 
 export async function deleteTask(id) {
-    const url = `https://fazer-4l62.onrender.com/${id}`
+    const url = `https://fazer-4l62.onrender.com/tasks/${id}`
     try {
         const response = await fetch(url, {
             method: "DELETE",

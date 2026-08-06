@@ -11,8 +11,7 @@ origins = [
     "http://127.0.0.1:8080",
     "http://localhost:8080",
     "http://localhost:63342",
-    "https://fazerr.vercel.app/",
-    "https://fazer-4l62.onrender.com/",
+    "https://fazerr.vercel.app",
 ]
 
 app.add_middleware(
