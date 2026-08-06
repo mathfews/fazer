@@ -2,9 +2,9 @@
 
 A full-stack task management application built to practice modern web development. The project started as a vanilla JavaScript application using LocalStorage and gradually evolved into a FastAPI-powered application with SQLite persistence and a deployed production environment.
 
-- Live Demo: https://fazerr.vercel.app
+Live Demo: https://fazerr.vercel.app
 
-- Backend API: https://fazer-4l62.onrender.com/docs
+Backend API: https://fazer-4l62.onrender.com/docs
 
 ## Features
 
