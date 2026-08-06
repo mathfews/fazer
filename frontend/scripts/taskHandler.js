@@ -59,7 +59,6 @@ export function setupTaskHandlers() {
 
                 if (page.classList.contains("status-options")) {
                     filter_status.value = page.id
-                    console.log(filter_status.value)
                 }
 
                 else if (page.classList.contains("priority-options")) {
@@ -69,7 +68,6 @@ export function setupTaskHandlers() {
 
                 else if (page.classList.contains("top-page")) {
                     filter_date.value = page.id
-                    console.log(filter_date.value)
                 }
             }
 

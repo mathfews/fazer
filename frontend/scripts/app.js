@@ -19,8 +19,44 @@ pages.forEach((page) => {
 })
 
 function getFilters() {
-    return [filter_date.value, filter_priority.value, filter_status.value]
+    return {
+        "date": filter_date.value,
+        "priority": filter_priority.value,
+        "status": filter_status.value
+    }
 }
+
+async function updateScreen(date, priority, status) {
+    const filters = getFilters()
+
+    const date_now = new Date(Date.now()).toISOString().split("T")[0]
+    const date_7days_later = new Date()
+    date_7days_later.setDate(date_7days_later.getDate() + 7)
+
+    const next_7_days = date_7days_later.toISOString().split("T")[0]
+
+    const all_tasks = await getTasks()
+    const filteredByDate = []
+    const filteredByPriority = []
+    const filteredByStatus = []
+
+    all_tasks.forEach((task) => {
+        if (filters["date"] === "today") {
+            if (task["due_date"] === date_now) {
+                filteredByDate.push(task)
+            }
+        }
+        else if (filters["date"] === "7days") {
+            if (task["due_date"] >= date_now && task["due_date"] < next_7_days) {
+               filteredByDate.push(task)
+            }
+        }
+        else {
+            filteredByDate.push(task)
+        }
+    })
+
+    renderTasks(tasks_area, filteredByDate)
     renderedTasks = document.querySelectorAll(".task-template")
 }
 
