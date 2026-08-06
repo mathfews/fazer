@@ -194,13 +194,13 @@ edit_task_btn.addEventListener("click", async () => {
     })
 })
 
-task_add_btn.addEventListener("click", () => {
-    addTask(task_btn_text.value, priority_input.value, date_input.value)
+task_add_btn.addEventListener("click", async () => {
+    await addTask(task_btn_text.value, priority_input.value, date_input.value)
     task_btn_text.value = ""
     priority_input.value = ""
     date_input.value = ""
     task_btn_details.classList.remove("open")
-    updateScreen()
+    await updateScreen()
 })
 
 /* task_add_btn.addEventListener("click", () => {
