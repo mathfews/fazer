@@ -3,17 +3,24 @@ import { addTask, updateTask, deleteTask } from "./crud.js"
 import { renderTasks, createTaskElement, editingTaskId, priorityLabels } from "./tasks.js"
 import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
-import { task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context } from "./dom.js"
+import {
+    task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context, filter_priority, filter_status, filter_date, pages
+} from "./dom.js"
 
-/* let confirm_buttons = null */
 let renderedTasks = null
 
 setupTaskHandlers()
 updateScreen()
 
-async function updateScreen() {
-    renderTasks(tasks_area, await getTasks())
-    /* confirm_buttons = document.querySelectorAll("button.confirm-btn") */
+pages.forEach((page) => {
+    page.addEventListener("click", () => {
+        updateScreen()
+    })
+})
+
+function getFilters() {
+    return [filter_date.value, filter_priority.value, filter_status.value]
+}
     renderedTasks = document.querySelectorAll(".task-template")
 }
 
@@ -88,9 +95,9 @@ edit_task_btn.addEventListener("click", async () => {
     })
 })
 
-task_add_btn.addEventListener("click", async () => {
+task_add_btn.addEventListener("click", () => {
     addTask(task_btn_text.value, priority_input.value, date_input.value)
-    await updateScreen()
+    updateScreen()
 })
 
 /* task_add_btn.addEventListener("click", () => {

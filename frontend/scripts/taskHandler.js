@@ -1,7 +1,6 @@
 import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages, menu_context, main_title, main_icon, filter_priority, filter_status, filter_date  } from "./dom.js"
 
 export function setupTaskHandlers() {
-
     document.addEventListener("click", (event) => {
         if (!menu_context.contains(event.target)) {
             menu_context.classList.remove("open")
@@ -43,6 +42,12 @@ export function setupTaskHandlers() {
         page.addEventListener("click", () => {
             let parent = page.parentElement
             if (page.classList.contains("selected") && !(page.classList.contains("top-page"))) {
+                if (page.classList.contains("status-options")) {
+                    filter_status.value = "uncompleted"
+                }
+                else if (page.classList.contains("priority-options")) {
+                    filter_priority.value = "all"
+                }
                 page.classList.remove("selected")
             }
             else {
@@ -50,21 +55,18 @@ export function setupTaskHandlers() {
                     _page.classList.remove("selected")
                 })
                 page.classList.add("selected")
-            }
 
-            if (page.classList.contains("status-options")) {
-                filter_status.value = page.id
-                console.log(filter_status.value)
-            }
+                if (page.classList.contains("status-options")) {
+                    filter_status.value = page.id
+                }
 
-            else if (page.classList.contains("priority-options")) {
-                filter_priority.value = page.id
-                console.log(filter_priority.value)
-            }
+                else if (page.classList.contains("priority-options")) {
+                    filter_priority.value = page.id
+                }
 
-            else if (page.classList.contains("top-page")) {
-                filter_date.value = page.id
-                console.log(filter_date.value)
+                else if (page.classList.contains("top-page")) {
+                    filter_date.value = page.id
+                }
             }
 
 
