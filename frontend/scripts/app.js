@@ -4,7 +4,7 @@ import { renderTasks, createTaskElement, editingTaskId, priorityLabels } from ".
 import { getTasks } from "./storage.js"
 import { setupTaskHandlers } from "./taskHandler.js"
 import {
-    task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context, filter_priority, filter_status, filter_date, pages
+    task_add_btn, date_input, priority_input, task_btn_text, tasks_area, delete_task_btn, edit_task_btn, menu_context, filter_priority, filter_status, filter_date, pages, task_btn_details
 } from "./dom.js"
 
 let renderedTasks = null
@@ -18,7 +18,7 @@ pages.forEach((page) => {
     })
 })
 
-function getFilters() {
+function getFiltersValues() {
     return {
         "date": filter_date.value,
         "priority": filter_priority.value,
@@ -27,7 +27,7 @@ function getFilters() {
 }
 
 async function updateScreen(date, priority, status) {
-    const filters = getFilters()
+    const filters = getFiltersValues()
 
     const date_now = new Date(Date.now()).toISOString().split("T")[0]
     const date_7days_later = new Date()
@@ -173,6 +173,10 @@ edit_task_btn.addEventListener("click", async () => {
 
 task_add_btn.addEventListener("click", () => {
     addTask(task_btn_text.value, priority_input.value, date_input.value)
+    task_btn_text.value = ""
+    priority_input.value = ""
+    date_input.value = ""
+    task_btn_details.classList.remove("open")
     updateScreen()
 })
 
