@@ -63,7 +63,6 @@ export function setupTaskHandlers() {
 
                 else if (page.classList.contains("priority-options")) {
                     filter_priority.value = page.id
-                    console.log(filter_priority.value)
                 }
 
                 else if (page.classList.contains("top-page")) {

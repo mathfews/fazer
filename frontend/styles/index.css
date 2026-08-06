@@ -75,7 +75,7 @@ body {
 
     #search-box {
         width: 210px;
-        height: 30px;
+        height: 35px;
         border: none;
         outline: none;
         background-color: var(--search-bg-color);

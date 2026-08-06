@@ -56,9 +56,6 @@ async function updateScreen(date, priority, status) {
         }
     })
 
-    console.log(filters)
-    console.log(filteredByDate)
-
     filteredByDate.forEach((task) => {
         if (filters["priority"] === "High") {
             if(task["priority"] === "High") {
@@ -80,7 +77,26 @@ async function updateScreen(date, priority, status) {
         }
     })
 
-    renderTasks(tasks_area, filteredByPriority)
+    console.log(filters)
+    console.log(filteredByPriority)
+
+    filteredByPriority.forEach((task) => {
+        if (filters["status"] === "uncompleted") {
+            if (task["completed"] === 0) {
+                filteredByStatus.push(task)
+            }
+        }
+        else if (filters["status"] === "completed") {
+            if (task["completed"] === 1) {
+                filteredByStatus.push(task)
+            }
+        }
+        else {
+            filteredByStatus.push(task)
+        }
+    })
+
+    renderTasks(tasks_area, filteredByStatus)
     renderedTasks = document.querySelectorAll(".task-template")
 }
 
