@@ -1,4 +1,4 @@
-import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages, menu_context, main_title, main_icon  } from "./dom.js"
+import { task_btn_details, task_btn_header, task_btn_area, date_text, date_input, priority_input, priority_text, pages, menu_context, main_title, main_icon, filter_priority, filter_status, filter_date  } from "./dom.js"
 
 export function setupTaskHandlers() {
 
@@ -42,7 +42,7 @@ export function setupTaskHandlers() {
     pages.forEach((page) => {
         page.addEventListener("click", () => {
             let parent = page.parentElement
-            if (page.classList.contains("selected")) {
+            if (page.classList.contains("selected") && !(page.classList.contains("top-page"))) {
                 page.classList.remove("selected")
             }
             else {
@@ -51,6 +51,22 @@ export function setupTaskHandlers() {
                 })
                 page.classList.add("selected")
             }
+
+            if (page.classList.contains("status-options")) {
+                filter_status.value = page.id
+                console.log(filter_status.value)
+            }
+
+            else if (page.classList.contains("priority-options")) {
+                filter_priority.value = page.id
+                console.log(filter_priority.value)
+            }
+
+            else if (page.classList.contains("top-page")) {
+                filter_date.value = page.id
+                console.log(filter_date.value)
+            }
+
 
             const page_title = page.querySelector(".page-title")
             const page_icon = page.querySelector(".page-icon")
