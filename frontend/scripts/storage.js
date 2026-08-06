@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:8000/tasks/"
+const url = "https://fazer-4l62.onrender.com/"
 
 export async function getTasks() {
     try {
