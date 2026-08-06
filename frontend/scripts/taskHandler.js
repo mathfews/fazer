@@ -42,7 +42,6 @@ export function setupTaskHandlers() {
     pages.forEach((page) => {
         page.addEventListener("click", () => {
             let parent = page.parentElement
-
             if (page.classList.contains("selected")) {
                 page.classList.remove("selected")
             }
@@ -56,15 +55,9 @@ export function setupTaskHandlers() {
             const page_title = page.querySelector(".page-title")
             const page_icon = page.querySelector(".page-icon")
 
-            if (document.querySelectorAll(".selected").length > 1) {
-                const top_page = document.querySelector(".top-page.selected")
-                main_title.textContent = top_page.textContent
-                main_icon.innerHTML = top_page.querySelector(".page-icon").innerHTML
-            }
-            else {
-                main_title.textContent = page_title.textContent
-                main_icon.innerHTML = page_icon.innerHTML
-            }
+            const top_page = document.querySelector(".top-page.selected")
+            main_title.textContent = top_page.textContent
+            main_icon.innerHTML = top_page.querySelector(".page-icon").innerHTML
         })
     })
 }
