@@ -1,6 +1,7 @@
 import { deleteTask,changeTaskState,updateTask } from "./crud.js"
 import { menu_context, delete_task_btn, edit_task_btn } from "./dom.js"
 import { getTasks } from "./storage.js"
+import { updateScreen } from "./app.js"
 
 export let editingTaskId = null
 
@@ -47,6 +48,7 @@ export function createTaskElement(task) {
 
     element_checkbox.addEventListener("change", async () => {
         await changeTaskState(id)
+        await updateScreen()
     })
 
     element_priority.classList.add(priorityLabels(element_priority, task.priority))
