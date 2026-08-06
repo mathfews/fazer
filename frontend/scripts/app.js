@@ -56,7 +56,31 @@ async function updateScreen(date, priority, status) {
         }
     })
 
-    renderTasks(tasks_area, filteredByDate)
+    console.log(filters)
+    console.log(filteredByDate)
+
+    filteredByDate.forEach((task) => {
+        if (filters["priority"] === "High") {
+            if(task["priority"] === "High") {
+                filteredByPriority.push(task)
+            }
+        }
+        else if (filters["priority"] === "Medium") {
+            if(task["priority"] === "Medium") {
+                filteredByPriority.push(task)
+            }
+        }
+        else if (filters["priority"] === "Low") {
+            if (task["priority"] === "Low") {
+                filteredByPriority.push(task)
+            }
+        }
+        else if (filters["priority"] === "All") {
+            filteredByPriority.push(task)
+        }
+    })
+
+    renderTasks(tasks_area, filteredByPriority)
     renderedTasks = document.querySelectorAll(".task-template")
 }
 
