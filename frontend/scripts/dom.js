@@ -21,3 +21,7 @@ export const pages = document.querySelectorAll(".page")
 
 export const main_title = document.getElementById("main-title")
 export const main_icon = document.getElementById("main-icon")
+
+export const filter_priority = document.getElementById("filter-priority")
+export const filter_status = document.getElementById("filter-status")
+export const filter_date = document.getElementById("filter-date")
