@@ -492,3 +492,45 @@ body {
         background-color: rgba(234, 234, 213, 0.486);
     }
 }
+@media only screen and (max-width: 575px) {
+    #sidebar-section {
+        display: none;
+    }
+    #main-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .propriety {
+            /*background-color: rgb(246 230 207 / 0.37);*/
+        }
+
+        #title-area {
+            display: flex;
+            transform: scale(1.3);
+        }
+
+        .header-btn-task-text {
+            display: none;
+        }
+
+        #task-add-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+        }
+
+        #task-btn-header {
+            width: 350px;
+            display: flex;
+            align-self: start;
+            justify-self: start;
+        }
+
+        #tasks-area {
+            width: 85%;
+        }
+    }
+}
